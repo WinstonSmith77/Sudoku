@@ -39,7 +39,10 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Cell\Value.cs" />
+    <Compile Include="Cell\Cell.cs" />
+    <Compile Include="Cell\ICell.cs" />
+    <Compile Include="Cell\NumericValue.cs" />
+    <Compile Include="Factory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

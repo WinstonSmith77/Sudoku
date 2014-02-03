@@ -6,16 +6,25 @@ namespace Tests.CellTests
     [TestFixture]
     public class Values
     {
-        [TestCase(Value.One, 1)]
-        [TestCase(Value.Two, 2)]
-        [TestCase(Value.Three, 3)]
-        [TestCase(Value.Four, 4)]
-        [TestCase(Value.Five, 5)]
-        [TestCase(Value.Six, 6)]
-        [TestCase(Value.Seven, 7)]
-        [TestCase(Value.Eight, 8)]
-        [TestCase(Value.Nine, 9)]
-        public void SomeTest(Value value, int valueAsInt)
+        private readonly object[] _testCases = new object[]
+            {
+                new object[]  {NumericValue.One,  1},
+                new object[]  {NumericValue.Two,  2},
+                new object[]  {NumericValue.Three,  3},
+                new object[]  {NumericValue.Four,  4},
+                new object[]  {NumericValue.Five,  5},
+                new object[]  {NumericValue.Six,  6},
+                new object[]  {NumericValue.Seven,  7},
+                new object[]  {NumericValue.Eight,  8},
+                new object[]  {NumericValue.Nine,  9},
+            };
+
+
+
+
+
+        [Test, TestCaseSource("_testCases")]
+        public void CheckNumericValueTiInt(NumericValue value, int valueAsInt)
         {
             Assert.AreEqual((int)value, valueAsInt);
         }

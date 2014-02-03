@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mechanics.Cell
 {
-    public enum Value
+    public enum NumericValue
     {
         One = 1,
         Two = 2,

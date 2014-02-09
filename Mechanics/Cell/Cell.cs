@@ -9,6 +9,17 @@ namespace Mechanics.Cell
 {
     public class Cell : ICell
     {
+        public override int GetHashCode()
+        {
+            return (_possibleValues.Count);
+        }
+
+        public override bool Equals(object obj)
+        {
+            var other = obj as Cell;
+            return other != null && SameContent(this, other);
+        }
+
         private static readonly ReadOnlyCollection<NumericValue> _allNumericValues;
 
         static Cell()
@@ -52,6 +63,7 @@ namespace Mechanics.Cell
             }
 
             var copyExcludeValue = new List<NumericValue>(_possibleValues);
+            copyExcludeValue.Sort();
             if (!copyExcludeValue.Remove(value))
             {
                 throw new ArgumentException(value.ToString() + " already not possible anymore!");
@@ -59,5 +71,19 @@ namespace Mechanics.Cell
 
             return new Cell(copyExcludeValue);
         }
+
+
+        public static bool SameContent(Cell a, Cell b)
+        {
+
+            if (a._possibleValues.Count != b._possibleValues.Count)
+            {
+                return false;
+            }
+
+            return !a._possibleValues.Where((t, i) => t != b._possibleValues[i]).Any();
+        }
+
+
     }
 }

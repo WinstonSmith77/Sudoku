@@ -18,7 +18,6 @@ namespace Tests.CellTests
             _allNumericValues = new ReadOnlyCollection<NumericValue>(Enum.GetValues(typeof(NumericValue)).Cast<NumericValue>().ToList());
         }
 
-
         private static readonly ReadOnlyCollection<NumericValue> _allNumericValues;
 
         [Test]
@@ -113,6 +112,62 @@ namespace Tests.CellTests
             }
 
             Assume.That(cell.IsDefined);
+        }
+
+        [Test]
+        public void IsEqual()
+        {
+            var range = new List<NumericValue>(_allNumericValues);
+            range.Remove(NumericValue.Eight);
+
+            var shuffledA = range.Shuffle(25);
+            var shuffledB = range.Shuffle(890);
+
+            var cellA = Factory.Instance.CreateEmptyCell();
+            var cellB = Factory.Instance.CreateEmptyCell();
+
+            Assume.That(cellA.Equals(cellB));
+
+            foreach (var remove in shuffledA)
+            {
+                cellA = cellA.ExcludeValue(remove);
+            }
+
+           
+            foreach (var remove in shuffledB)
+            {
+                cellB = cellB.ExcludeValue(remove);
+            }
+
+            Assume.That(cellA.Equals(cellB));
+        }
+
+        [Test]
+        public void IsNotEqual()
+        {
+            var range = new List<NumericValue>(_allNumericValues);
+            range.Remove(NumericValue.Eight);
+
+            var shuffledA = range.Shuffle(25);
+            var shuffledB = range.Shuffle(890);
+            shuffledB.RemoveAt(0);
+
+            var cellA = Factory.Instance.CreateEmptyCell();
+            var cellB = Factory.Instance.CreateEmptyCell();
+           
+
+            foreach (var remove in shuffledA)
+            {
+                cellA = cellA.ExcludeValue(remove);
+            }
+
+
+            foreach (var remove in shuffledB)
+            {
+                cellB = cellB.ExcludeValue(remove);
+            }
+
+            Assume.That(!cellA.Equals(cellB));
         }
 
         //public 

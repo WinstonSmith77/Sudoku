@@ -154,6 +154,8 @@ namespace Tests.CellTests
 
             var cellA = Factory.Instance.CreateEmptyCell();
             var cellB = Factory.Instance.CreateEmptyCell();
+
+            Assert.That(!cellA.Equals(null));
            
 
             foreach (var remove in shuffledA)

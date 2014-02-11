@@ -47,7 +47,6 @@ namespace Mechanics.Cell
             {
                 return _possibleValues.Count == 1;
             }
-
         }
 
         public bool MayBe(NumericValue value)
@@ -63,7 +62,6 @@ namespace Mechanics.Cell
             }
 
             var copyExcludeValue = new List<NumericValue>(_possibleValues);
-            copyExcludeValue.Sort();
             if (!copyExcludeValue.Remove(value))
             {
                 throw new ArgumentException(value.ToString() + " already not possible anymore!");

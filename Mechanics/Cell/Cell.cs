@@ -39,8 +39,6 @@ namespace Mechanics.Cell
 
         private readonly List<NumericValue> _possibleValues;
 
-
-
         public bool IsDefined
         {
             get
@@ -56,20 +54,12 @@ namespace Mechanics.Cell
 
         public ICell ExcludeValue(NumericValue value)
         {
-            if (IsDefined)
-            {
-                throw new ArgumentException("Cell is already is defined!");
-            }
-
             var copyExcludeValue = new List<NumericValue>(_possibleValues);
-            if (!copyExcludeValue.Remove(value))
-            {
-                throw new ArgumentException(value.ToString() + " already not possible anymore!");
-            }
+
+            copyExcludeValue.Sort();
 
             return new Cell(copyExcludeValue);
         }
-
 
         public static bool SameContent(Cell a, Cell b)
         {
@@ -81,7 +71,5 @@ namespace Mechanics.Cell
 
             return !a._possibleValues.Where((t, i) => t != b._possibleValues[i]).Any();
         }
-
-
     }
 }

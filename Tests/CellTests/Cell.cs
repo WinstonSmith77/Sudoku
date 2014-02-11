@@ -66,33 +66,6 @@ namespace Tests.CellTests
             }
         }
 
-        [Test]
-        public void ExcludeInvokeException()
-        {
-            var cell = Factory.Instance.CreateEmptyCell();
-
-            cell = cell.ExcludeValue(NumericValue.Eight);
-
-            Assert.Throws<ArgumentException>(() => cell.ExcludeValue(NumericValue.Eight));
-        }
-
-        [Test]
-        public void ExcludeInvokeException2()
-        {
-            var cell = Factory.Instance.CreateEmptyCell();
-
-            foreach (var numericValue in _allNumericValues)
-            {
-                if (numericValue == NumericValue.Nine)
-                {
-                    Assert.Throws<ArgumentException>(() => cell.ExcludeValue(numericValue));
-                }
-                else
-                {
-                    cell = cell.ExcludeValue(numericValue);
-                }
-            }
-        }
 
         [Test]
         public void CheckForIsDefined()

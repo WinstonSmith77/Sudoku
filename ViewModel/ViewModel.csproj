@@ -41,6 +41,7 @@
   <ItemGroup>
     <Compile Include="Cell.cs" />
     <Compile Include="Field.cs" />
+    <Compile Include="Main.cs" />
     <Compile Include="Properties\Annotations.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

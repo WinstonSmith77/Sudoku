@@ -3,26 +3,13 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:sudoku="clr-namespace:Sudoku"
         Title="MainWindow" Height="350" Width="525">
-    <Window.Resources>
-        <SolidColorBrush x:Key="smallGrid">Gray</SolidColorBrush>
-        <Thickness x:Key="smallGridWidth">2</Thickness>
-    </Window.Resources>
-    <Grid>
-        <ItemsControl ItemsSource="{Binding Cells}">
-            <ItemsControl.ItemsPanel>
-                <ItemsPanelTemplate>
-                    <UniformGrid Rows="9" Columns="9" IsItemsHost="True"></UniformGrid>
-                </ItemsPanelTemplate>
-            </ItemsControl.ItemsPanel>
-            <ItemsControl.ItemTemplate>
-                <DataTemplate>
-                    <Border  BorderThickness="{StaticResource smallGridWidth}" BorderBrush="{StaticResource smallGrid}"  Margin="4">
-                        <sudoku:Cell VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
-                    </Border>
-                </DataTemplate>
-            </ItemsControl.ItemTemplate>
-        </ItemsControl>
-        <sudoku:LargeGrid/>
-    </Grid>
-   
+    <DockPanel TextBlock.FontSize="25">
+        <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <Button>&lt;</Button>
+            <Button>&gt;</Button>
+        </StackPanel>
+        <sudoku:MainGrid DataContext="{Binding CurrentField}"/>
+    </DockPanel>
+
+
 </Window>

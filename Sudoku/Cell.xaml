@@ -6,9 +6,7 @@
              mc:Ignorable="d" 
              d:DesignHeight="300" d:DesignWidth="300" >
     <Grid>
-        <Viewbox>
-            <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Result}" Opacity=".5"/>
-        </Viewbox>
+     
         <ItemsControl ItemsSource="{Binding Values}">
             <ItemsControl.ItemsPanel>
                 <ItemsPanelTemplate>
@@ -17,12 +15,18 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Viewbox VerticalAlignment="Stretch" HorizontalAlignment="Stretch">
-                        <TextBlock VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding}"/>
-                    </Viewbox>
+                    <Button VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                        <Viewbox>
+                            <TextBlock Text="{Binding}" ></TextBlock>
+                        </Viewbox>
+                    </Button>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>
         </ItemsControl>
+
+        <Viewbox>
+            <TextBlock IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Result}" Opacity=".25"/>
+        </Viewbox>
     </Grid>
 
 

@@ -4,8 +4,8 @@
         xmlns:sudoku="clr-namespace:Sudoku"
         Title="MainWindow" Height="350" Width="525">
     <Window.Resources>
-        <SolidColorBrush x:Key="smallGrid">LightGray</SolidColorBrush>
-        <Thickness x:Key="smallGridWidth">1</Thickness>
+        <SolidColorBrush x:Key="smallGrid">Gray</SolidColorBrush>
+        <Thickness x:Key="smallGridWidth">2</Thickness>
     </Window.Resources>
     <Grid>
         <ItemsControl ItemsSource="{Binding Cells}">
@@ -17,7 +17,7 @@
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
                     <Border  BorderThickness="{StaticResource smallGridWidth}" BorderBrush="{StaticResource smallGrid}"  Margin="4">
-                        <TextBlock Text="5" VerticalAlignment="Center" HorizontalAlignment="Center" />
+                        <sudoku:Cell VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch"/>
                     </Border>
                 </DataTemplate>
             </ItemsControl.ItemTemplate>

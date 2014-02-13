@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Mechanics.Cell;
+using Mechanics.Field;
 
 namespace Mechanics
 {
@@ -19,6 +20,11 @@ namespace Mechanics
         public ICell CreateEmptyCell()
         {
             return Cell.Cell.CreateEmptyCell();
+        }
+
+        public IField CreateEmptyField()
+        {
+            return Field.Field.CreateEmptyField();
         }
     }
 }

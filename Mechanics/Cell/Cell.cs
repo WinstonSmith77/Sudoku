@@ -55,6 +55,7 @@ namespace Mechanics.Cell
         public ICell ExcludeValue(NumericValue value)
         {
             var copyExcludeValue = new List<NumericValue>(_possibleValues);
+            copyExcludeValue.Remove(value);
 
             copyExcludeValue.Sort();
 

@@ -66,6 +66,7 @@
   <ItemGroup>
     <Compile Include="CellTests\Cell.cs" />
     <Compile Include="CellTests\ValuesTest.cs" />
+    <Compile Include="FieldTests\Field.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestHelpers.cs" />
   </ItemGroup>

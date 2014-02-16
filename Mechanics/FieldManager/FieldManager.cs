@@ -39,6 +39,14 @@ namespace Mechanics.FieldManager
             return newField;
         }
 
+        public IField CurrentField
+        {
+            get
+            {
+                return (IField)_fields.Peek().Clone();
+            }
+        }
+
 
         private readonly Stack<IField> _fields = new Stack<IField>();
 

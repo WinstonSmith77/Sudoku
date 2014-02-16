@@ -1,26 +1,54 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Mechanics.Cell;
 using ViewModel.Annotations;
 
 namespace ViewModel
 {
-    public class Cell : INotifyPropertyChanged
+    public class Cell
     {
-        public const int Start = 1;
-        public const int Width = 9;
+        private static readonly ReadOnlyCollection<NumericValue> _allNumericValues;
 
-        public Cell()
+        static Cell()
         {
-            Values = Enumerable.Range(Start, Width).ToArray();
-            Result = "?";
+            _allNumericValues = new ReadOnlyCollection<NumericValue>(Enum.GetValues(typeof(NumericValue)).Cast<NumericValue>().ToList());
         }
 
-        public int[] Values
+
+        public ICommand Click
+        {
+            get;
+            set;
+        }
+
+        public const int Width = 9;
+
+        public Cell(ICell cell, Field parent, int x, int y)
+        {
+            var values = new List<int>();
+            Result = "?";
+
+            foreach (var value in _allNumericValues)
+            {
+                if (cell.MayBe(value))
+                {
+                    values.Add((int)value);
+                }
+            }
+
+            Values = values.Select(value => Tuple.Create(value, new RelayCommand(() => parent.ValueChoosen(value, x, y))));
+
+
+        }
+
+        public IEnumerable<Tuple<int, RelayCommand>> Values
         {
             get;
             set;
@@ -28,15 +56,5 @@ namespace ViewModel
 
         public string Result { get; set; }
 
-
-        public event PropertyChangedEventHandler PropertyChanged;
-
-        [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
-        {
-            PropertyChangedEventHandler handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
-
-        }
     }
 }

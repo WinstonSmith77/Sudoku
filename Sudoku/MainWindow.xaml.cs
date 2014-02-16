@@ -24,7 +24,7 @@ namespace Sudoku
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new Main();
+            DataContext = new FieldManager();
         }
     }
 }

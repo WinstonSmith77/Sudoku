@@ -7,5 +7,6 @@ namespace Mechanics.FieldManager
     {
         void Save(string fileName);
         IField SetCell(int x, int y, NumericValue value);
+        IField CurrentField { get; }
     }
 }

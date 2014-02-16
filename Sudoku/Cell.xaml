@@ -15,9 +15,9 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch">
+                    <Button VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Command="{Binding Item2}">
                         <Viewbox>
-                            <TextBlock Text="{Binding}" ></TextBlock>
+                            <TextBlock Text="{Binding Item1}" ></TextBlock>
                         </Viewbox>
                     </Button>
                 </DataTemplate>

@@ -2,18 +2,16 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Mechanics;
 using Mechanics.Cell;
 using NUnit.Framework;
 
-namespace Tests.CellTests
+namespace Tests
 {
     [TestFixture]
-    public class Cell
+    public class CellTests
     {
-        static Cell()
+        static CellTests()
         {
             _allNumericValues = new ReadOnlyCollection<NumericValue>(Enum.GetValues(typeof(NumericValue)).Cast<NumericValue>().ToList());
         }

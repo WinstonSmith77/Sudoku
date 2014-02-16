@@ -1,17 +1,13 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Mechanics.Cell;
 using Mechanics.Field;
 using NUnit.Framework;
 using Mechanics;
 
-namespace Tests.FieldTests
+namespace Tests
 {
     [TestFixture]
-    public class Field
+    public class FieldTests
     {
 
         [Test]

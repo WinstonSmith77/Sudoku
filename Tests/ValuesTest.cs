@@ -1,7 +1,7 @@
 ﻿using Mechanics.Cell;
 using NUnit.Framework;
 
-namespace Tests.CellTests
+namespace Tests
 {
     [TestFixture]
     public class Values

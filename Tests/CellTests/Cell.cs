@@ -67,7 +67,7 @@ namespace Tests.CellTests
         }
 
         [Test]
-        public void ExcludeInvokeException2()
+        public void ExcludeInvokeException()
         {
             var cell = Factory.Instance.CreateEmptyCell();
 
@@ -155,7 +155,6 @@ namespace Tests.CellTests
                 cellA = cellA.ExcludeValue(remove);
             }
 
-
             foreach (var remove in shuffledB)
             {
                 cellB = cellB.ExcludeValue(remove);
@@ -164,6 +163,16 @@ namespace Tests.CellTests
             Assume.That(!cellA.Equals(cellB));
         }
 
-        //public 
+        [Test]
+        public void Clone()
+        {
+            var cellA = Factory.Instance.CreateEmptyCell();
+            var cellB = (ICell) cellA.Clone();
+
+            Assume.That(cellA.Equals(cellB));
+
+            var cellC = cellB.ExcludeValue(NumericValue.Eight);
+            Assume.That(!cellA.Equals(cellC));
+        }
     }
 }

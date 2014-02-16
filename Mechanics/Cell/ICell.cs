@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Mechanics.Cell
 {
-    public interface ICell
+    public interface ICell : ICloneable
     {
         bool IsDefined
         {

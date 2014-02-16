@@ -14,13 +14,19 @@ namespace Mechanics.Cell
             return (_possibleValues.Count);
         }
 
+        public object Clone()
+        {
+            var copyExcludeValue = new List<NumericValue>(_possibleValues);
+            return new Cell(copyExcludeValue);
+        }
+
         public override bool Equals(object obj)
         {
             var other = obj as Cell;
             return other != null && SameContent(this, other);
         }
 
-        private static readonly ReadOnlyCollection<NumericValue> _allNumericValues;
+        internal static readonly ReadOnlyCollection<NumericValue> _allNumericValues;
 
         static Cell()
         {
@@ -69,7 +75,7 @@ namespace Mechanics.Cell
             return new Cell(copyExcludeValue);
         }
 
-        public static bool SameContent(Cell a, Cell b)
+        private static bool SameContent(Cell a, Cell b)
         {
 
             if (a._possibleValues.Count != b._possibleValues.Count)

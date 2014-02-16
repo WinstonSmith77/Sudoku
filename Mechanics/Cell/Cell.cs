@@ -62,7 +62,7 @@ namespace Mechanics.Cell
         public ICell ExcludeValue(NumericValue value)
         {
 
-            if (IsDefined)
+            if (IsDefined && _possibleValues.Contains(value))
             {
                 throw new ArgumentException();
             }

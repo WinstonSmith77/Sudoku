@@ -44,8 +44,6 @@ namespace ViewModel
             }
 
             Values = values.Select(value => Tuple.Create(value, new RelayCommand(() => parent.ValueChoosen(value, x, y))));
-
-
         }
 
         public IEnumerable<Tuple<int, RelayCommand>> Values

@@ -54,6 +54,13 @@ namespace Mechanics.Cell
 
         public ICell ExcludeValue(NumericValue value)
         {
+
+            if (IsDefined)
+            {
+                throw new ArgumentException();
+            }
+
+
             var copyExcludeValue = new List<NumericValue>(_possibleValues);
             copyExcludeValue.Remove(value);
 

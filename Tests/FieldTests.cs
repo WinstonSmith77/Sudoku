@@ -42,11 +42,10 @@ namespace Tests
 
             var fieldC = fieldB.SetCell(5, 6, NumericValue.Eight);
             Assume.That(!fieldA.Equals(fieldC));
+
+            Assume.That(fieldA.Equals(fieldB));
         }
 
         private const int _width = 9;
-
-
-
     }
 }

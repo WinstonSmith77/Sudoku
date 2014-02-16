@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mechanics.Cell
 {
+    [Serializable]
     public class Cell : ICell
     {
         public override int GetHashCode()

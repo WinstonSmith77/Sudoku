@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Mechanics.Cell;
 using Mechanics.Field;
+using Mechanics.FieldManager;
 
 namespace Mechanics
 {
@@ -25,6 +26,16 @@ namespace Mechanics
         public IField CreateEmptyField()
         {
             return Field.Field.CreateEmptyField();
+        }
+
+        public IFieldManager CreateEmptyFieldManager()
+        {
+            return FieldManager.FieldManager.CreateEmptyFieldManager();
+        }
+
+        public IFieldManager LoadFieldManager(string fileName)
+        {
+            return FieldManager.FieldManager.Load(fileName);
         }
     }
 }

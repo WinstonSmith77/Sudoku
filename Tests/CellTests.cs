@@ -171,6 +171,8 @@ namespace Tests
 
             var cellC = cellB.ExcludeValue(NumericValue.Eight);
             Assume.That(!cellA.Equals(cellC));
+
+            Assume.That(cellA.Equals(cellB));
         }
     }
 }

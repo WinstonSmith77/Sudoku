@@ -7,11 +7,12 @@ using System.Threading.Tasks;
 
 namespace Mechanics.Field
 {
+    [Serializable]
     public class Field : IField
     {
         public ICell this[int x, int y]
         {
-            get { return _field[x, y]; }
+            get { return (ICell)_field[x, y].Clone(); }
         }
 
         public object Clone()

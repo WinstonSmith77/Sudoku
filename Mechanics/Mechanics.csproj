@@ -43,10 +43,13 @@
     <Compile Include="Cell\ICell.cs" />
     <Compile Include="Cell\NumericValue.cs" />
     <Compile Include="Factory.cs" />
+    <Compile Include="FieldManager\FieldManager.cs" />
     <Compile Include="Field\Field.cs" />
     <Compile Include="Field\IField.cs" />
+    <Compile Include="FieldManager\IFieldManager.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

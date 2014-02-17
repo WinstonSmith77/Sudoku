@@ -5,19 +5,20 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Mechanics;
 using Mechanics.Cell;
 using ViewModel.Annotations;
 
 namespace ViewModel
 {
-    public class FieldManager : INotifyPropertyChanged
+    public sealed class FieldManager : INotifyPropertyChanged
     {
         private readonly Mechanics.FieldManager.IFieldManager _fieldManager;
 
 
         public FieldManager()
         {
-            _fieldManager = Mechanics.Factory.Instance.CreateEmptyFieldManager();
+            _fieldManager = Factory.Instance.CreateEmptyFieldManager();
             CurrentField = new Field(_fieldManager.CurrentField, this);
         }
 
@@ -37,15 +38,15 @@ namespace ViewModel
         public event PropertyChangedEventHandler PropertyChanged;
 
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
 
-        public void ValueChoosen(int value, int x, int y)
+        public void ValueChoosen(int value, Point p)
         {
-            var newField =_fieldManager.SetCell(x, y, (NumericValue) value);
+            var newField =_fieldManager.SetCell(p, (NumericValue) value);
             CurrentField.SetField(newField);
         }
     }

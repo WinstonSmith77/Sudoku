@@ -28,14 +28,14 @@ namespace Tests
                 Assert.That(fmA.Equals(fmB));
 
                 var fmC = Factory.Instance.CreateEmptyFieldManager();
-                fmC.SetCell(3, 4, NumericValue.Seven);
+                fmC.SetCell(new Point(3, 4), NumericValue.Seven);
                 fmC.Save(tempFile);
 
                 var fmD = Factory.Instance.LoadFieldManager(tempFile);
 
                 Assert.That(fmC.Equals(fmD));
             }
-            finally 
+            finally
             {
                 File.Delete(tempFile);
             }

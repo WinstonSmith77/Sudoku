@@ -5,8 +5,8 @@ namespace Mechanics.Field
 {
     public interface IField : ICloneable
     {
-        ICell this[int x, int y] { get; }
+        ICell this[Point p] { get; }
 
-        IField SetCell(int x, int y, NumericValue value);
+        IField SetCell(Point p, NumericValue value);
     }
 }

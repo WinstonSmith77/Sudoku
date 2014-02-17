@@ -20,13 +20,14 @@ namespace Tests
             {
                 for (int y = _width; y < 2 * _width; y++)
                 {
+                    var p = new Point(x, y);
                     if (x >= 0 && x < _width && y >= 0 && y < _width)
                     {
-                        Assert.That(emptyCell.Equals(field[x, y]));
+                        Assert.That(emptyCell.Equals(field[p]));
                     }
                     else
                     {
-                        Assert.Throws<IndexOutOfRangeException>(() => emptyCell.Equals(field[x, y]));
+                        Assert.Throws<IndexOutOfRangeException>(() => emptyCell.Equals(field[p]));
                     }
                 }
             }
@@ -40,7 +41,7 @@ namespace Tests
 
             Assume.That(fieldA.Equals(fieldB));
 
-            var fieldC = fieldB.SetCell(5, 6, NumericValue.Eight);
+            var fieldC = fieldB.SetCell(new Point(5, 6), NumericValue.Eight);
             Assume.That(!fieldA.Equals(fieldC));
 
             Assume.That(fieldA.Equals(fieldB));

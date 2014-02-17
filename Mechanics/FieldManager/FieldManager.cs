@@ -30,10 +30,10 @@ namespace Mechanics.FieldManager
             }
         }
 
-        public IField SetCell(int x, int y, NumericValue value)
+        public IField SetCell(Point p, NumericValue value)
         {
             var tos = _fields.Peek();
-            var newField = tos.SetCell(x, y, value);
+            var newField = tos.SetCell(p, value);
             _fields.Push(newField);
 
             return newField;

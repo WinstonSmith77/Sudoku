@@ -10,17 +10,17 @@ namespace Mechanics.Field
     [Serializable]
     public class Field : IField
     {
-        public ICell this[int x, int y]
+        public ICell this[Point p]
         {
-            get { return (ICell)_field[x, y].Clone(); }
+            get { return (ICell)_field[p.X, p.Y].Clone(); }
         }
 
         public object Clone()
         {
-            var field = new ICell[_width,_width];
-            for (int x = 0; x < _width; x++)
+            var field = new ICell[Width,Width];
+            for (int x = 0; x < Width; x++)
             {
-                for (int y = 0; y < _width; y++)
+                for (int y = 0; y < Width; y++)
                 {
                     field[x, y] = (ICell)_field[x,y].Clone();
                 }
@@ -39,9 +39,9 @@ namespace Mechanics.Field
         {
             var hashCode = 0;
 
-            for (int x = 0; x < _width; x++)
+            for (int x = 0; x < Width; x++)
             {
-                for (int y = 0; y < _width; y++)
+                for (int y = 0; y < Width; y++)
                 {
                     hashCode ^= _field[x, y].GetHashCode();
                 }
@@ -53,9 +53,9 @@ namespace Mechanics.Field
 
         private static bool SameContent(Field field, Field other)
         {
-            for (int x = 0; x < _width; x++)
+            for (int x = 0; x < Width; x++)
             {
-                for (int y = 0; y < _width; y++)
+                for (int y = 0; y < Width; y++)
                 {
                     if (!field._field[x, y].Equals(other._field[x, y]))
                     {
@@ -67,7 +67,7 @@ namespace Mechanics.Field
             return true;
         }
 
-        public IField SetCell(int x, int y, NumericValue toSet)
+        public IField SetCell(Point p, NumericValue toSet)
         {
             var clone = (Field)Clone();
 
@@ -77,7 +77,7 @@ namespace Mechanics.Field
                 {
                     continue;
                 }
-                clone._field[x,y] = clone._field[x,y].ExcludeValue(value);
+                clone._field[p.X, p.Y] = clone._field[p.X, p.Y].ExcludeValue(value);
             }
 
             return clone;
@@ -96,17 +96,17 @@ namespace Mechanics.Field
 
         private Field()
         {
-            for (int x = 0; x < _width; x++)
+            for (int x = 0; x < Width; x++)
             {
-                for (int y = 0; y < _width; y++)
+                for (int y = 0; y < Width; y++)
                 {
                     _field[x, y] = Factory.Instance.CreateEmptyCell();
                 }
             }
         }
 
-        private const int _width = 9;
+        internal const int Width = 9;
 
-        private readonly ICell[,] _field = new ICell[_width, _width];
+        private readonly ICell[,] _field = new ICell[Width, Width];
     }
 }

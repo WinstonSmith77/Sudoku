@@ -6,6 +6,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using Mechanics;
 using ViewModel.Annotations;
 
 namespace ViewModel
@@ -26,7 +27,8 @@ namespace ViewModel
             {
                 for (int y = 0; y < Cell.Width; y++)
                 {
-                    Cells[x + y * Cell.Width] = new Cell(_field[x, y], this, x, y);
+                    var p = new Point(x, y);
+                    Cells[p.Index] = new Cell(_field[p], this, p);
                 }
             }
         }
@@ -39,10 +41,10 @@ namespace ViewModel
             {
                 for (int y = 0; y < Cell.Width; y++)
                 {
-                    var index = x + y * Cell.Width;
-                    if (!Cells[index].InnerCell.Equals(_field[x, y]))
+                    var p = new Point(x, y);
+                    if (!Cells[p.Index].InnerCell.Equals(_field[p]))
                     {
-                        Cells[index] = new Cell(_field[x, y], this, x, y);
+                        Cells[p.Index] = new Cell(_field[p], this, p);
                     }
                 }
             }
@@ -66,11 +68,9 @@ namespace ViewModel
 
 
 
-        internal void ValueChoosen(int value, int x, int y)
+        internal void ValueChoosen(int value, Point p)
         {
-            _parent.ValueChoosen(value, x, y);
+            _parent.ValueChoosen(value, p);
         }
-
-
     }
 }

@@ -9,6 +9,7 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Mechanics.Cell;
 using ViewModel.Annotations;
+using Mechanics;
 
 namespace ViewModel
 {
@@ -38,7 +39,7 @@ namespace ViewModel
         }
 
 
-        public Cell(ICell cell, Field parent, int x, int y)
+        public Cell(ICell cell, Field parent, Point p)
         {
             _cell = cell;
             var values = new List<int>();
@@ -52,7 +53,7 @@ namespace ViewModel
                 }
             }
 
-            Values = values.Select(value => Tuple.Create(value, new RelayCommand(() => parent.ValueChoosen(value, x, y))));
+            Values = values.Select(value => Tuple.Create(value, new RelayCommand(() => parent.ValueChoosen(value, p))));
 
             Result = IsDefined ? Values.First().Item1.ToString() : "?";
         }

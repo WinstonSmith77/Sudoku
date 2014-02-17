@@ -2,9 +2,10 @@
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" xmlns:sys="clr-namespace:System;assembly=mscorlib"
         xmlns:sudoku="clr-namespace:Sudoku"
-        Title="MainWindow" Height="350" Width="525">
+        Title="MainWindow" Height="950" Width="1525">
     <DockPanel TextBlock.FontSize="25">
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
+            <Button Command="{Binding Reset}">Reset</Button>
             <Button>&lt;</Button>
             <Button>&gt;</Button>
         </StackPanel>

@@ -13,8 +13,10 @@ namespace Mechanics.Cell
             get;
         }
 
-        bool MayBe(NumericValue value);
+        bool CouldBe(NumericValue value);
 
         ICell ExcludeValue(NumericValue value);
+
+        NumericValue Value { get; }
     }
 }

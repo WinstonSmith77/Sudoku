@@ -6,6 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using Mechanics;
 using Mechanics.Cell;
+using Mechanics.Geometry;
 using NUnit.Framework;
 
 namespace Tests

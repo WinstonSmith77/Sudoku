@@ -5,18 +5,26 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Mechanics;
 using Mechanics.Cell;
+using Mechanics.Geometry;
 using ViewModel.Annotations;
 
 namespace ViewModel
 {
     public sealed class FieldManager : INotifyPropertyChanged
     {
-        private readonly Mechanics.FieldManager.IFieldManager _fieldManager;
+        private Mechanics.FieldManager.IFieldManager _fieldManager;
 
 
         public FieldManager()
+        {
+            Reset = new RelayCommand(ResetInner);
+            ResetInner();
+        }
+
+        private void ResetInner()
         {
             _fieldManager = Factory.Instance.CreateEmptyFieldManager();
             CurrentField = new Field(_fieldManager.CurrentField, this);
@@ -46,8 +54,10 @@ namespace ViewModel
 
         public void ValueChoosen(int value, Point p)
         {
-            var newField =_fieldManager.SetCell(p, (NumericValue) value);
+            var newField = _fieldManager.SetCell(p, (NumericValue)value);
             CurrentField.SetField(newField);
         }
+
+        public ICommand Reset { get; set; }
     }
 }

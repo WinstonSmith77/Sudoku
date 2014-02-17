@@ -54,7 +54,7 @@ namespace Mechanics.Cell
             }
         }
 
-        public bool MayBe(NumericValue value)
+        public bool CouldBe(NumericValue value)
         {
             return _possibleValues.Contains(value);
         }
@@ -74,6 +74,20 @@ namespace Mechanics.Cell
             copyExcludeValue.Sort();
 
             return new Cell(copyExcludeValue);
+        }
+
+        public NumericValue Value
+        {
+            get
+            {
+                if (!IsDefined)
+                {
+                    throw new NotSupportedException();
+                }
+
+                return _possibleValues.First();
+            }
+
         }
 
         private static bool SameContent(Cell a, Cell b)

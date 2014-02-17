@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Mechanics.Cell;
+using Mechanics.Geometry;
 using ViewModel.Annotations;
 using Mechanics;
 
@@ -47,7 +48,7 @@ namespace ViewModel
 
             foreach (var value in _allNumericValues)
             {
-                if (cell.MayBe(value))
+                if (cell.CouldBe(value))
                 {
                     values.Add((int)value);
                 }

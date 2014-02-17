@@ -6,6 +6,7 @@ using System.Runtime.Serialization.Formatters.Binary;
 using Mechanics.Cell;
 using Mechanics.Field;
 using System.Collections.Generic;
+using Mechanics.Geometry;
 
 namespace Mechanics.FieldManager
 {
@@ -34,8 +35,28 @@ namespace Mechanics.FieldManager
         {
             var tos = _fields.Peek();
             var newField = tos.SetCell(p, value);
+
+            newField = ClearRange(p, value, newField);
+
             _fields.Push(newField);
 
+            return newField;
+        }
+
+        private static IField ClearRange(Point p, NumericValue value, IField newField)
+        {
+            foreach (var rangeP in new Range(p))
+            {
+                if (newField[rangeP].IsDefined)
+                {
+                    continue;
+                }
+                newField = newField.ExcludeValueFromCell(rangeP, value);
+                if (newField[rangeP].IsDefined)
+                {
+                    newField = ClearRange(rangeP, newField[rangeP].Value, newField);
+                }
+            }
             return newField;
         }
 

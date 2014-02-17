@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mechanics.Geometry;
 
 namespace Mechanics.Field
 {
@@ -17,12 +18,12 @@ namespace Mechanics.Field
 
         public object Clone()
         {
-            var field = new ICell[Width,Width];
-            for (int x = 0; x < Width; x++)
+            var field = new ICell[Extension, Extension];
+            for (int x = 0; x < Extension; x++)
             {
-                for (int y = 0; y < Width; y++)
+                for (int y = 0; y < Extension; y++)
                 {
-                    field[x, y] = (ICell)_field[x,y].Clone();
+                    field[x, y] = _field[x, y];
                 }
             }
 
@@ -39,9 +40,9 @@ namespace Mechanics.Field
         {
             var hashCode = 0;
 
-            for (int x = 0; x < Width; x++)
+            for (int x = 0; x < Extension; x++)
             {
-                for (int y = 0; y < Width; y++)
+                for (int y = 0; y < Extension; y++)
                 {
                     hashCode ^= _field[x, y].GetHashCode();
                 }
@@ -53,9 +54,9 @@ namespace Mechanics.Field
 
         private static bool SameContent(Field field, Field other)
         {
-            for (int x = 0; x < Width; x++)
+            for (int x = 0; x < Extension; x++)
             {
-                for (int y = 0; y < Width; y++)
+                for (int y = 0; y < Extension; y++)
                 {
                     if (!field._field[x, y].Equals(other._field[x, y]))
                     {
@@ -83,6 +84,15 @@ namespace Mechanics.Field
             return clone;
         }
 
+        public IField ExcludeValueFromCell(Point p, NumericValue value)
+        {
+            var clone = (Field)Clone();
+
+            clone._field[p.X, p.Y] = clone._field[p.X, p.Y].ExcludeValue(value);
+
+            return clone;
+        }
+
 
         public static IField CreateEmptyField()
         {
@@ -96,17 +106,18 @@ namespace Mechanics.Field
 
         private Field()
         {
-            for (int x = 0; x < Width; x++)
+            for (int x = 0; x < Extension; x++)
             {
-                for (int y = 0; y < Width; y++)
+                for (int y = 0; y < Extension; y++)
                 {
                     _field[x, y] = Factory.Instance.CreateEmptyCell();
                 }
             }
         }
 
-        internal const int Width = 9;
+        internal const int Extension = ExtensionNeighborhood * ExtensionNeighborhood;
+        internal const int ExtensionNeighborhood = 3;
 
-        private readonly ICell[,] _field = new ICell[Width, Width];
+        private readonly ICell[,] _field = new ICell[Extension, Extension];
     }
 }

@@ -27,7 +27,7 @@ namespace Tests
 
             foreach (var numericValue in _allNumericValues)
             {
-                Assume.That(cell.MayBe(numericValue));
+                Assume.That(cell.CouldBe(numericValue));
             }
 
         }
@@ -40,7 +40,7 @@ namespace Tests
             foreach (var numericValue in _allNumericValues)
             {
                 var cellCopy = cell.ExcludeValue(numericValue);
-                Assume.That(!cellCopy.MayBe(numericValue));
+                Assume.That(!cellCopy.CouldBe(numericValue));
             }
         }
 
@@ -54,12 +54,12 @@ namespace Tests
                 cell = cell.ExcludeValue(_allNumericValues[indexToExclude]);
                 for (int indexToTest = 0; indexToTest <= indexToExclude; indexToTest++)
                 {
-                    Assume.That(!cell.MayBe(_allNumericValues[indexToTest]));
+                    Assume.That(!cell.CouldBe(_allNumericValues[indexToTest]));
                 }
 
                 for (int indexToTest = indexToExclude + 1; indexToTest < _allNumericValues.Count; indexToTest++)
                 {
-                    Assume.That(cell.MayBe(_allNumericValues[indexToTest]));
+                    Assume.That(cell.CouldBe(_allNumericValues[indexToTest]));
                 }
             }
         }

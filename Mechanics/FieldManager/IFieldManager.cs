@@ -1,5 +1,6 @@
 ﻿using Mechanics.Cell;
 using Mechanics.Field;
+using Mechanics.Geometry;
 
 namespace Mechanics.FieldManager
 {

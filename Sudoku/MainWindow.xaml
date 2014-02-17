@@ -6,8 +6,7 @@
     <DockPanel TextBlock.FontSize="25">
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
             <Button Command="{Binding Reset}">Reset</Button>
-            <Button>&lt;</Button>
-            <Button>&gt;</Button>
+            <Button Command="{Binding Undo}">&lt;</Button>
         </StackPanel>
         <sudoku:MainGrid DataContext="{Binding CurrentField}"/>
     </DockPanel>

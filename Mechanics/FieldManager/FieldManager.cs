@@ -68,6 +68,17 @@ namespace Mechanics.FieldManager
             }
         }
 
+        public bool CanUndo()
+        {
+            return _fields.Count > 1;
+        }
+
+        public IField Undo()
+        {
+            _fields.Pop();
+            return (IField)_fields.Peek().Clone();
+        }
+
 
         private readonly Stack<IField> _fields = new Stack<IField>();
 

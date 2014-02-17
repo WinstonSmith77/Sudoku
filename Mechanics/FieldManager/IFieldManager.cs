@@ -9,5 +9,9 @@ namespace Mechanics.FieldManager
         void Save(string fileName);
         IField SetCell(Point p, NumericValue value);
         IField CurrentField { get; }
+
+        bool CanUndo();
+
+        IField Undo();
     }
 }

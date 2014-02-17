@@ -10,7 +10,7 @@ using ViewModel.Annotations;
 
 namespace ViewModel
 {
-    public class Field : INotifyPropertyChanged
+    public sealed class Field : INotifyPropertyChanged
     {
 
         public event PropertyChangedEventHandler PropertyChanged;
@@ -58,7 +58,7 @@ namespace ViewModel
         }
 
         [NotifyPropertyChangedInvocator]
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        private void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));

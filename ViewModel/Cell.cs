@@ -32,12 +32,17 @@ namespace ViewModel
 
         private readonly ICell _cell;
 
+        public bool IsDefined
+        {
+            get { return _cell.IsDefined; }
+        }
+
 
         public Cell(ICell cell, Field parent, int x, int y)
         {
             _cell = cell;
             var values = new List<int>();
-            Result = "?";
+          
 
             foreach (var value in _allNumericValues)
             {
@@ -48,6 +53,8 @@ namespace ViewModel
             }
 
             Values = values.Select(value => Tuple.Create(value, new RelayCommand(() => parent.ValueChoosen(value, x, y))));
+
+            Result = IsDefined ? Values.First().Item1.ToString() : "?";
         }
 
         public IEnumerable<Tuple<int, RelayCommand>> Values

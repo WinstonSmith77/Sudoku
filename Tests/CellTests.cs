@@ -80,6 +80,8 @@ namespace Tests
                     cell = cell.ExcludeValue(numericValue);
                 }
             }
+
+            cell.ExcludeValue(NumericValue.One);
         }
 
 

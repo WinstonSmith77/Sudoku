@@ -30,8 +30,12 @@ namespace ViewModel
 
         public const int Width = 9;
 
+        private readonly ICell _cell;
+
+
         public Cell(ICell cell, Field parent, int x, int y)
         {
+            _cell = cell;
             var values = new List<int>();
             Result = "?";
 
@@ -54,5 +58,9 @@ namespace ViewModel
 
         public string Result { get; set; }
 
+        public ICell InnerCell
+        {
+            get { return _cell; }
+        }
     }
 }

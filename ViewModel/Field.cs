@@ -34,6 +34,18 @@ namespace ViewModel
         public void SetField(Mechanics.Field.IField field)
         {
             _field = field;
+
+            for (int x = 0; x < Cell.Width; x++)
+            {
+                for (int y = 0; y < Cell.Width; y++)
+                {
+                    var index = x + y * Cell.Width;
+                    if (!Cells[index].InnerCell.Equals(_field[x, y]))
+                    {
+                        Cells[index] = new Cell(_field[x, y], this, x, y);
+                    }
+                }
+            }
         }
 
         private readonly FieldManager _parent;
@@ -59,9 +71,6 @@ namespace ViewModel
             _parent.ValueChoosen(value, x, y);
         }
 
-        internal void CellChanged(int x, int y)
-        {
-            Cells[x + y * Cell.Width] = new Cell(_field[x, y], this, x, y);
-        }
+
     }
 }

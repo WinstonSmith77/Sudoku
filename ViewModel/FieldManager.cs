@@ -47,7 +47,6 @@ namespace ViewModel
         {
             var newField =_fieldManager.SetCell(x, y, (NumericValue) value);
             CurrentField.SetField(newField);
-            CurrentField.CellChanged(x, y);
         }
     }
 }

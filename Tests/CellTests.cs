@@ -84,10 +84,20 @@ namespace Tests
             cell.ExcludeValue(NumericValue.One);
         }
 
+        [Test]
+        public void ExcludeInvokeException2()
+        {
+            var cell = Factory.Instance.CreateEmptyCell();
+            Assert.Throws<NotSupportedException>(() =>
+                {
+                    var a = cell.Value;
+                });
+        }
+
 
 
         [Test]
-        public void CheckForIsDefined()
+        public void CheckForIsDefinedAndValue()
         {
             var cell = Factory.Instance.CreateEmptyCell();
 
@@ -104,6 +114,7 @@ namespace Tests
             }
 
             Assume.That(cell.IsDefined);
+            Assume.That(cell.Value == NumericValue.Five);
         }
 
         [Test]
@@ -125,7 +136,7 @@ namespace Tests
                 cellA = cellA.ExcludeValue(remove);
             }
 
-           
+
             foreach (var remove in shuffledB)
             {
                 cellB = cellB.ExcludeValue(remove);
@@ -148,7 +159,7 @@ namespace Tests
             var cellB = Factory.Instance.CreateEmptyCell();
 
             Assert.That(!cellA.Equals(null));
-           
+
 
             foreach (var remove in shuffledA)
             {
@@ -167,7 +178,7 @@ namespace Tests
         public void Clone()
         {
             var cellA = Factory.Instance.CreateEmptyCell();
-            var cellB = (ICell) cellA.Clone();
+            var cellB = (ICell)cellA.Clone();
 
             Assume.That(cellA.Equals(cellB));
 

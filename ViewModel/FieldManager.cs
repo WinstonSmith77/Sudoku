@@ -24,6 +24,17 @@ namespace ViewModel
             ResetInner();
 
             Undo = new RelayCommand(UndoInner, CanUndo);
+            Redo = new RelayCommand(RedoInner, CanRedo);
+        }
+
+        private bool CanRedo()
+        {
+            return _fieldManager.CanRedo();
+        }
+
+        private void RedoInner()
+        {
+            CurrentField.SetField(_fieldManager.Redo());
         }
 
         private void UndoInner()
@@ -70,8 +81,8 @@ namespace ViewModel
             CurrentField.SetField(newField);
         }
 
-        public ICommand Reset { get; set; }
-
-        public ICommand Undo { get; set; }
+        public ICommand Reset { get; private set; }
+        public ICommand Undo { get; private set; }
+        public ICommand Redo { get; private set; }
     }
 }

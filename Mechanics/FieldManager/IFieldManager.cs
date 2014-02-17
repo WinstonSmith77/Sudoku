@@ -11,7 +11,9 @@ namespace Mechanics.FieldManager
         IField CurrentField { get; }
 
         bool CanUndo();
-
         IField Undo();
+
+        bool CanRedo();
+        IField Redo();
     }
 }

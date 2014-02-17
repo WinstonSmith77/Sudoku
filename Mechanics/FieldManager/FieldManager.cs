@@ -39,6 +39,7 @@ namespace Mechanics.FieldManager
             newField = ClearRange(p, value, newField);
 
             _fields.Push(newField);
+            _redo.Clear();
 
             return newField;
         }
@@ -64,7 +65,7 @@ namespace Mechanics.FieldManager
         {
             get
             {
-                return (IField)_fields.Peek().Clone();
+                return _fields.Peek();
             }
         }
 
@@ -75,12 +76,26 @@ namespace Mechanics.FieldManager
 
         public IField Undo()
         {
-            _fields.Pop();
-            return (IField)_fields.Peek().Clone();
+            _redo.Push(_fields.Pop());
+            return _fields.Peek();
+        }
+
+        public bool CanRedo()
+        {
+            return _redo.Any();
+        }
+
+        public IField Redo()
+        {
+            var toRedo = _redo.Pop();
+            _fields.Push(toRedo);
+
+            return toRedo;
         }
 
 
         private readonly Stack<IField> _fields = new Stack<IField>();
+        private readonly Stack<IField> _redo = new Stack<IField>();
 
         public static IFieldManager CreateEmptyFieldManager()
         {

@@ -94,8 +94,6 @@ namespace Tests
                 });
         }
 
-
-
         [Test]
         public void CheckForIsDefinedAndValue()
         {

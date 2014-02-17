@@ -23,13 +23,6 @@ namespace ViewModel
             _allNumericValues = new ReadOnlyCollection<NumericValue>(Enum.GetValues(typeof(NumericValue)).Cast<NumericValue>().ToList());
         }
 
-
-        public ICommand Click
-        {
-            get;
-            set;
-        }
-
         public const int Width = 9;
 
         private readonly ICell _cell;
@@ -54,12 +47,12 @@ namespace ViewModel
                 }
             }
 
-            Values = values.Select(value => Tuple.Create(value, new RelayCommand(() => parent.ValueChoosen(value, p))));
+            Values = Enumerable.Range(1, Width).ToList().Select(value => Tuple.Create(value, new RelayCommand(() => parent.ValueChoosen(value, p)), values.Contains(value)));
 
-            Result = IsDefined ? Values.First().Item1.ToString() : "?";
+            Result = IsDefined ? ((int)(cell.Value)).ToString() : "?";
         }
 
-        public IEnumerable<Tuple<int, RelayCommand>> Values
+        public IEnumerable<Tuple<int, RelayCommand, bool>> Values
         {
             get;
             set;

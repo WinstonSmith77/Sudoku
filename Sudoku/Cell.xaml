@@ -18,7 +18,7 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Command="{Binding Item2}">
+                    <Button VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Command="{Binding Item2}" Visibility="{Binding Converter={StaticResource boolToVisibility}, Path = Item3}">
                         <Viewbox>
                             <TextBlock Text="{Binding Item1}" ></TextBlock>
                         </Viewbox>

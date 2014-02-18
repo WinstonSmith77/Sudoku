@@ -18,9 +18,13 @@
             </ItemsControl.ItemsPanel>
             <ItemsControl.ItemTemplate>
                 <DataTemplate>
-                    <Button VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Command="{Binding Item2}" Visibility="{Binding Converter={StaticResource boolToVisibility}, Path = Item3}">
+                    <Button VerticalContentAlignment="Stretch" HorizontalContentAlignment="Stretch" Command="{Binding Item2}" Visibility="{Binding Converter={StaticResource boolToVisibility}, Path = Item3}" Background="Transparent">
                         <Viewbox>
-                            <TextBlock Text="{Binding Item1}" ></TextBlock>
+                            <TextBlock Text="{Binding Item1}" >
+                                <TextBlock.Foreground>
+                                    <SolidColorBrush Color="{Binding Item4}"></SolidColorBrush>
+                                </TextBlock.Foreground>
+                            </TextBlock>
                         </Viewbox>
                     </Button>
                 </DataTemplate>
@@ -32,7 +36,11 @@
         </Viewbox>
 
         <Viewbox Visibility="{Binding Converter={StaticResource boolToVisibility}, Path = IsDefined}">
-            <TextBlock IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Result}"/>
+            <TextBlock IsHitTestVisible="False" VerticalAlignment="Center" HorizontalAlignment="Center" Text="{Binding Result}">
+                <TextBlock.Foreground>
+                    <SolidColorBrush Color="{Binding ResultColor}"></SolidColorBrush>
+                </TextBlock.Foreground>
+            </TextBlock>
         </Viewbox>
     </Grid>
 

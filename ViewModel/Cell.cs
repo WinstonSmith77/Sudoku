@@ -7,6 +7,7 @@ using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using System.Windows.Media;
 using Mechanics.Cell;
 using Mechanics.Geometry;
 using ViewModel.Annotations;
@@ -37,32 +38,51 @@ namespace ViewModel
         {
             _cell = cell;
             var values = new List<int>();
-          
 
-            foreach (var value in _allNumericValues)
+            if (IsDefined)
             {
-                if (cell.CouldBe(value))
-                {
-                    values.Add((int)value);
-                }
+                var value = (int) (cell.Value);
+                Result = value.ToString();
+                ResultColor = MyColors[value - 1];
             }
+            else
+            {
 
-            Values = Enumerable.Range(1, Width).ToList().Select(value => Tuple.Create(value, new RelayCommand(() => parent.ValueChoosen(value, p)), values.Contains(value)));
+                foreach (var value in _allNumericValues)
+                {
+                    if (cell.CouldBe(value))
+                    {
+                        values.Add((int) value);
+                    }
+                }
 
-            Result = IsDefined ? ((int)(cell.Value)).ToString() : "?";
+
+                Values =
+                    Enumerable.Range(1, Width)
+                              .ToList()
+                              .Select(
+                                  value =>
+                                  Tuple.Create(value, new RelayCommand(() => parent.ValueChoosen(value, p)),
+                                               values.Contains(value), MyColors[value - 1]));
+                Result = "?";
+            }
+           
         }
 
-        public IEnumerable<Tuple<int, RelayCommand, bool>> Values
+        public IEnumerable<Tuple<int, RelayCommand, bool, Color>> Values
         {
             get;
             set;
         }
 
         public string Result { get; set; }
+        public Color ResultColor { get; set; }
 
         public ICell InnerCell
         {
             get { return _cell; }
         }
+
+        public static Color[] MyColors = new[] { Colors.Red, Colors.Green, Colors.Peru, Colors.Blue, Colors.Black, Colors.DarkRed, Colors.Orange, Colors.Purple, Colors.DarkGoldenrod };
     }
 }

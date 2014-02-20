@@ -15,5 +15,6 @@ namespace Mechanics.FieldManager
 
         bool CanRedo();
         IField Redo();
+        bool CanReset();
     }
 }

@@ -5,9 +5,11 @@
         Title="MainWindow" Height="950" Width="1525">
     <DockPanel TextBlock.FontSize="25">
         <StackPanel DockPanel.Dock="Top" Orientation="Horizontal">
-            <Button Command="{Binding Reset}">Reset</Button>
+            <Button Command="{Binding Reset}" Margin="0,0,10,0">Reset</Button>
             <Button Command="{Binding Undo}">&lt;</Button>
-            <Button Command="{Binding Redo}">&gt;</Button>
+            <Button Command="{Binding Redo}"  Margin="0,0,10,0">&gt;</Button>
+            <Button Command="{Binding Save}">Save</Button>
+            <Button Command="{Binding Load}">Load</Button>
         </StackPanel>
         <sudoku:MainGrid DataContext="{Binding CurrentField}"/>
     </DockPanel>

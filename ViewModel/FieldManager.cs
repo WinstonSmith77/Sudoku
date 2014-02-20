@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Forms;
 using System.Windows.Input;
 using Mechanics;
 using Mechanics.Cell;
@@ -20,11 +21,40 @@ namespace ViewModel
 
         public FieldManager()
         {
-            Reset = new RelayCommand(ResetInner);
+            Reset = new RelayCommand(ResetInner, CanResetOrSave);
             ResetInner();
 
             Undo = new RelayCommand(UndoInner, CanUndo);
             Redo = new RelayCommand(RedoInner, CanRedo);
+            Save = new RelayCommand(SaveInner, CanResetOrSave);
+
+            Save = new RelayCommand(SaveInner, CanResetOrSave);
+            Load = new RelayCommand(InnerLoad);
+        }
+
+        private void InnerLoad()
+        {
+            var dlg = new OpenFileDialog() { DefaultExt = "sudoku", Filter = "Sodoku | *.sudoku" ,CheckFileExists = true};
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                _fieldManager = Factory.Instance.LoadFieldManager(dlg.FileName);
+                CurrentField = new Field(_fieldManager.CurrentField, this);
+            }
+        }
+
+        private bool CanResetOrSave()
+        {
+            return _fieldManager.CanReset();
+        }
+
+        private void SaveInner()
+        {
+            var dlg = new SaveFileDialog { DefaultExt = "sudoku", Filter = "Sodoku | *.sudoku" };
+
+            if (dlg.ShowDialog() == DialogResult.OK)
+            {
+                _fieldManager.Save(dlg.FileName);
+            }
         }
 
         private bool CanRedo()
@@ -84,5 +114,8 @@ namespace ViewModel
         public ICommand Reset { get; private set; }
         public ICommand Undo { get; private set; }
         public ICommand Redo { get; private set; }
+
+        public ICommand Save { get; private set; }
+        public ICommand Load { get; private set; }
     }
 }

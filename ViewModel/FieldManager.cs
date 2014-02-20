@@ -9,6 +9,7 @@ using System.Windows.Forms;
 using System.Windows.Input;
 using Mechanics;
 using Mechanics.Cell;
+using Mechanics.Exceptions;
 using Mechanics.Geometry;
 using ViewModel.Annotations;
 
@@ -34,7 +35,7 @@ namespace ViewModel
 
         private void InnerLoad()
         {
-            var dlg = new OpenFileDialog() { DefaultExt = "sudoku", Filter = "Sodoku | *.sudoku" ,CheckFileExists = true};
+            var dlg = new OpenFileDialog() { DefaultExt = "sudoku", Filter = "Sodoku | *.sudoku", CheckFileExists = true };
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 _fieldManager = Factory.Instance.LoadFieldManager(dlg.FileName);
@@ -107,8 +108,16 @@ namespace ViewModel
 
         public void ValueChoosen(int value, Point p)
         {
-            var newField = _fieldManager.SetCell(p, (NumericValue)value);
-            CurrentField.SetField(newField);
+            try
+            {
+                var newField = _fieldManager.SetCell(p, (NumericValue)value);
+                CurrentField.SetField(newField);
+            }
+            catch (NoMoreSolutionException)
+            {
+                MessageBox.Show("Choice is not possible!", "Error");
+            }
+
         }
 
         public ICommand Reset { get; private set; }

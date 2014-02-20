@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Mechanics.Exceptions;
 
 namespace Mechanics.Cell
 {
@@ -79,7 +80,7 @@ namespace Mechanics.Cell
             {
                 if (!IsDefined)
                 {
-                    throw new NotSupportedException();
+                    throw new ValueIsNotDefinedException();
                 }
 
                 return _possibleValues.First();

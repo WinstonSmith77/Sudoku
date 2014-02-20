@@ -4,6 +4,7 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using Mechanics;
 using Mechanics.Cell;
+using Mechanics.Exceptions;
 using NUnit.Framework;
 
 namespace Tests
@@ -68,7 +69,7 @@ namespace Tests
         public void ExcludeInvokeException()
         {
             var cell = Factory.Instance.CreateEmptyCell();
-            Assert.Throws<NotSupportedException>(() =>
+            Assert.Throws<ValueIsNotDefinedException>(() =>
                 {
                     var a = cell.Value;
                 });

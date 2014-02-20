@@ -5,6 +5,7 @@ using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Mechanics.Cell;
+using Mechanics.Exceptions;
 using Mechanics.Field;
 using System.Collections.Generic;
 using Mechanics.Geometry;
@@ -46,11 +47,48 @@ namespace Mechanics.FieldManager
 
             newField = ClearRange(p, value, newField);
 
+            CheckWhetherThereIsASolution(newField);
+
             _fields.Push(newField);
             _redo.Clear();
 
             return newField;
         }
+
+        private void CheckWhetherThereIsASolution(IField newField)
+        {
+            for (int x = 0; x < Field.Field.Extension; x++)
+            {
+                CheckWhetherThereIsASolution(newField, new Vertical(new Point(x, 0)));
+            }
+
+            for (int y = 0; y < Field.Field.Extension; y++)
+            {
+                CheckWhetherThereIsASolution(newField, new Vertical(new Point(0, y)));
+            }
+
+            for (int x = 0; x < Field.Field.Extension; x += Field.Field.ExtensionNeighborhood)
+            {
+                for (int y = 0; y < Field.Field.Extension; y += Field.Field.ExtensionNeighborhood)
+                {
+                    CheckWhetherThereIsASolution(newField, new Neighbor(new Point(x, y)));
+                }
+            }
+        }
+
+        private static readonly List<NumericValue> _allNumericValues = Cell.Cell._allNumericValues.ToList();
+
+
+        private void CheckWhetherThereIsASolution(IField field, IRange range)
+        {
+            var points = range.ToList();
+            if (_allNumericValues.Exists(value => !points.Exists(p => field[p].CouldBe(value))))
+            {
+                throw new NoMoreSolutionException();
+            }
+        }
+
+
 
         private static IField ClearRange(Point p, NumericValue value, IField newField)
         {

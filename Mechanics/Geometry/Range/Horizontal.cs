@@ -17,9 +17,9 @@ namespace Mechanics.Geometry.Range
 
         protected override IEnumerable<Point> GetAllPoints()
         {
-            for (int y = 0; y < Field.Field.Extension; y++)
+            for (int x = 0; x < Field.Field.Extension; x++)
             {
-                yield return new Point(_p.X, y);
+                yield return new Point(x, _p.Y);
             }
         }
     }

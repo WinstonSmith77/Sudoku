@@ -1,4 +1,5 @@
-﻿using Mechanics.Cell;
+﻿using System.Collections;
+using Mechanics.Cell;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -29,6 +30,7 @@ namespace Mechanics.Field
 
             return new Field(field);
         }
+
 
         public override bool Equals(object obj)
         {

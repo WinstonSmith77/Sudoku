@@ -47,8 +47,13 @@
     <Compile Include="Field\Field.cs" />
     <Compile Include="Field\IField.cs" />
     <Compile Include="FieldManager\IFieldManager.cs" />
+    <Compile Include="Geometry\Range\Neighbor.cs" />
+    <Compile Include="Geometry\Range\Horizontal.cs" />
+    <Compile Include="Geometry\Range\IRange.cs" />
     <Compile Include="Geometry\Point.cs" />
-    <Compile Include="Geometry\Range.cs" />
+    <Compile Include="Geometry\Range\Range.cs" />
+    <Compile Include="Geometry\Range\RangeBase.cs" />
+    <Compile Include="Geometry\Range\VerticalRange.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup />

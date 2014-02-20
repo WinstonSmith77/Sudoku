@@ -8,6 +8,7 @@ using Mechanics.Cell;
 using Mechanics.Field;
 using System.Collections.Generic;
 using Mechanics.Geometry;
+using Mechanics.Geometry.Range;
 
 namespace Mechanics.FieldManager
 {

@@ -8,18 +8,18 @@ namespace Mechanics.Geometry.Range
 {
     public class Vertical : RangeBase
     {
-        private readonly Point _p;
+        private readonly int _x;
 
-        public Vertical(Point p)
+        public Vertical(int x)
         {
-            _p = p;
+            _x = x;
         }
 
         protected override IEnumerable<Point> GetAllPoints()
         {
             for (int y = 0; y < Field.Field.Extension; y++)
             {
-                yield return new Point(_p.X, y);
+                yield return new Point(_x, y);
             }
         }
     }

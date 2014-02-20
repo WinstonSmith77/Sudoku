@@ -59,12 +59,12 @@ namespace Mechanics.FieldManager
         {
             for (int x = 0; x < Field.Field.Extension; x++)
             {
-                CheckWhetherThereIsASolution(newField, new Vertical(new Point(x, 0)));
+                CheckWhetherThereIsASolution(newField, new Vertical(x));
             }
 
             for (int y = 0; y < Field.Field.Extension; y++)
             {
-                CheckWhetherThereIsASolution(newField, new Vertical(new Point(0, y)));
+                CheckWhetherThereIsASolution(newField, new Horizontal(y));
             }
 
             for (int x = 0; x < Field.Field.Extension; x += Field.Field.ExtensionNeighborhood)
@@ -79,7 +79,7 @@ namespace Mechanics.FieldManager
         private static readonly List<NumericValue> _allNumericValues = Cell.Cell._allNumericValues.ToList();
 
 
-        private void CheckWhetherThereIsASolution(IField field, IRange range)
+        private void CheckWhetherThereIsASolution(IField field, IEnumerable<Point> range)
         {
             var points = range.ToList();
             if (_allNumericValues.Exists(value => !points.Exists(p => field[p].CouldBe(value))))

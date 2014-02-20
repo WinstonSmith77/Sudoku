@@ -17,8 +17,8 @@ namespace Mechanics.Geometry.Range
         {
             var allPoints = new List<Point>();
 
-            allPoints.AddRange(new Vertical(p));
-            allPoints.AddRange(new Horizontal(p));
+            allPoints.AddRange(new Vertical(p.X));
+            allPoints.AddRange(new Horizontal(p.Y));
             allPoints.AddRange(new Neighbor(p));
 
             allPoints.Remove(p);

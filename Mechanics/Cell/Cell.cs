@@ -32,11 +32,15 @@ namespace Mechanics.Cell
         static Cell()
         {
             _allNumericValues = new ReadOnlyCollection<NumericValue>(Enum.GetValues(typeof(NumericValue)).Cast<NumericValue>().ToList());
+            _emptyCell = new Cell(_allNumericValues);
         }
+
+
+        private readonly static Cell _emptyCell;
 
         public static Cell CreateEmptyCell()
         {
-            return new Cell(_allNumericValues);
+            return _emptyCell;
         }
 
         private Cell(IEnumerable<NumericValue> possibleValues)
@@ -61,13 +65,6 @@ namespace Mechanics.Cell
 
         public ICell ExcludeValue(NumericValue value)
         {
-
-            if (IsDefined && _possibleValues.Contains(value))
-            {
-                throw new ArgumentException();
-            }
-
-
             var copyExcludeValue = new List<NumericValue>(_possibleValues);
             copyExcludeValue.Remove(value);
 

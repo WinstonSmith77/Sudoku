@@ -68,26 +68,6 @@ namespace Tests
         public void ExcludeInvokeException()
         {
             var cell = Factory.Instance.CreateEmptyCell();
-
-            foreach (var numericValue in _allNumericValues)
-            {
-                if (numericValue == NumericValue.Nine)
-                {
-                    Assert.Throws<ArgumentException>(() => cell.ExcludeValue(numericValue));
-                }
-                else
-                {
-                    cell = cell.ExcludeValue(numericValue);
-                }
-            }
-
-            cell.ExcludeValue(NumericValue.One);
-        }
-
-        [Test]
-        public void ExcludeInvokeException2()
-        {
-            var cell = Factory.Instance.CreateEmptyCell();
             Assert.Throws<NotSupportedException>(() =>
                 {
                     var a = cell.Value;

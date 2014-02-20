@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.IO.Compression;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
@@ -18,7 +19,10 @@ namespace Mechanics.FieldManager
             IFormatter formatter = new BinaryFormatter();
             using (var stream = File.OpenRead(fileName))
             {
-                return (FieldManager)formatter.Deserialize(stream);
+                using (var compress = new DeflateStream(stream, CompressionMode.Decompress))
+                {
+                    return (FieldManager)formatter.Deserialize(compress);
+                }
             }
         }
 
@@ -27,7 +31,10 @@ namespace Mechanics.FieldManager
             IFormatter formatter = new BinaryFormatter();
             using (var stream = File.OpenWrite(fileName))
             {
-                formatter.Serialize(stream, this);
+                using (var compress = new DeflateStream(stream, CompressionLevel.Optimal))
+                {
+                    formatter.Serialize(compress, this);
+                }
             }
         }
 
@@ -91,6 +98,11 @@ namespace Mechanics.FieldManager
             _fields.Push(toRedo);
 
             return toRedo;
+        }
+
+        public bool CanReset()
+        {
+            return _fields.Count != 1 || _redo.Count != 0;
         }
 
 

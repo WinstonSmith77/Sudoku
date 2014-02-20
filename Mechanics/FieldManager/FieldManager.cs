@@ -31,7 +31,7 @@ namespace Mechanics.FieldManager
         public void Save(string fileName)
         {
             IFormatter formatter = new BinaryFormatter();
-            using (var stream = File.OpenWrite(fileName))
+            using (var stream = File.Create(fileName))
             {
                 using (var compress = new DeflateStream(stream, CompressionLevel.Optimal))
                 {

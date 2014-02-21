@@ -35,10 +35,10 @@ namespace Tests
         }
 
         [Test]
-        public void Clone()
+        public void Identity()
         {
             var fieldA = Factory.Instance.CreateEmptyField();
-            var fieldB = (IField)fieldA.Clone();
+            var fieldB = Factory.Instance.CreateEmptyField();
 
             Assume.That(fieldA.Equals(fieldB));
 

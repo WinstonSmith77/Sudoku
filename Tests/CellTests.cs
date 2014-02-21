@@ -154,10 +154,10 @@ namespace Tests
         }
 
         [Test]
-        public void Clone()
+        public void Identity()
         {
             var cellA = Factory.Instance.CreateEmptyCell();
-            var cellB = (ICell)cellA.Clone();
+            var cellB = Factory.Instance.CreateEmptyCell();
 
             Assume.That(cellA.Equals(cellB));
 

@@ -20,18 +20,17 @@ namespace Mechanics.Field
             }
         }
 
-        public object Clone()
+        private Field(IField field)
         {
-            var field = new ICell[Extension, Extension];
+            _field = new ICell[Extension, Extension];
             for (int x = 0; x < Extension; x++)
             {
                 for (int y = 0; y < Extension; y++)
                 {
-                    field[x, y] = _field[x, y];
+                    var p = new Point(x, y);
+                    _field[x,y] = field[p];
                 }
             }
-
-            return new Field(field);
         }
 
 
@@ -75,7 +74,7 @@ namespace Mechanics.Field
 
         public IField SetCell(Point p, NumericValue toSet)
         {
-            var clone = (Field)Clone();
+            var clone = new Field(this);
 
             foreach (var value in Cell.Cell._allNumericValues)
             {
@@ -91,13 +90,12 @@ namespace Mechanics.Field
 
         public IField ExcludeValueFromCell(Point p, NumericValue value)
         {
-            var clone = (Field)Clone();
+            var clone = new Field(this);
 
             clone._field[p.X, p.Y] = clone._field[p.X, p.Y].ExcludeValue(value);
 
             return clone;
         }
-
 
         public static IField CreateEmptyField()
         {

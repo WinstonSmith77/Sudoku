@@ -16,11 +16,7 @@ namespace Mechanics.Cell
             return (_possibleValues.Count);
         }
 
-        public object Clone()
-        {
-            var copyExcludeValue = new List<NumericValue>(_possibleValues);
-            return new Cell(copyExcludeValue);
-        }
+      
 
         public override bool Equals(object obj)
         {

@@ -1,18 +1,15 @@
 ﻿namespace Sudoku.Converts
 {
-    namespace DMG.MV5.WPFLibrary.Converter
+    public class BoolToVisibilityConverter : BoolToVisibilityConverterBase
     {
-        public class BoolToVisibilityConverter : BoolToVisibilityConverterBase
+        protected override bool GetBoolValue(object value)
         {
-            protected override bool GetBoolValue(object value)
-            {
-                return (bool)value;
-            }
+            return (bool)value;
+        }
 
-            protected override bool CheckInput(object value)
-            {
-                return value is bool;
-            }
+        protected override bool CheckInput(object value)
+        {
+            return value is bool;
         }
     }
 }

@@ -14,7 +14,10 @@ namespace Mechanics.Field
     {
         public ICell this[Point p]
         {
-            get { return (ICell)_field[p.X, p.Y].Clone(); }
+            get
+            {
+                return _field[p.X, p.Y];
+            }
         }
 
         public object Clone()

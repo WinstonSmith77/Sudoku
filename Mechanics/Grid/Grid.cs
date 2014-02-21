@@ -2,35 +2,35 @@
 using System;
 using Mechanics.Geometry;
 
-namespace Mechanics.Field
+namespace Mechanics.Grid
 {
     [Serializable]
-    public class Field : IField
+    public class Grid : IGrid
     {
         public ICell this[Point p]
         {
             get
             {
-                return _field[p.X, p.Y];
+                return _grid[p.X, p.Y];
             }
         }
 
-        private Field(IField field)
+        private Grid(IGrid grid)
         {
-            _field = new ICell[Extension, Extension];
+            _grid = new ICell[Extension, Extension];
             for (int x = 0; x < Extension; x++)
             {
                 for (int y = 0; y < Extension; y++)
                 {
                     var p = new Point(x, y);
-                    _field[x,y] = field[p];
+                    _grid[x,y] = grid[p];
                 }
             }
         }
 
         public override bool Equals(object obj)
         {
-            var other = obj as Field;
+            var other = obj as Grid;
             return other != null && SameContent(this, other);
         }
 
@@ -42,20 +42,20 @@ namespace Mechanics.Field
             {
                 for (int y = 0; y < Extension; y++)
                 {
-                    hashCode ^= _field[x, y].GetHashCode();
+                    hashCode ^= _grid[x, y].GetHashCode();
                 }
             }
 
             return hashCode;
         }
 
-        private static bool SameContent(Field field, Field other)
+        private static bool SameContent(Grid grid, Grid other)
         {
             for (int x = 0; x < Extension; x++)
             {
                 for (int y = 0; y < Extension; y++)
                 {
-                    if (!field._field[x, y].Equals(other._field[x, y]))
+                    if (!grid._grid[x, y].Equals(other._grid[x, y]))
                     {
                         return false;
                     }
@@ -65,9 +65,9 @@ namespace Mechanics.Field
             return true;
         }
 
-        public IField SetCell(Point p, NumericValue toSet)
+        public IGrid SetCell(Point p, NumericValue toSet)
         {
-            var clone = new Field(this);
+            var clone = new Grid(this);
 
             foreach (var value in Cell.Cell._allNumericValues)
             {
@@ -75,33 +75,33 @@ namespace Mechanics.Field
                 {
                     continue;
                 }
-                clone._field[p.X, p.Y] = clone._field[p.X, p.Y].ExcludeValue(value);
+                clone._grid[p.X, p.Y] = clone._grid[p.X, p.Y].ExcludeValue(value);
             }
 
             return clone;
         }
 
-        public IField ExcludeValueFromCell(Point p, NumericValue value)
+        public IGrid ExcludeValueFromCell(Point p, NumericValue value)
         {
-            var clone = new Field(this);
+            var clone = new Grid(this);
 
-            clone._field[p.X, p.Y] = clone._field[p.X, p.Y].ExcludeValue(value);
+            clone._grid[p.X, p.Y] = clone._grid[p.X, p.Y].ExcludeValue(value);
 
             return clone;
         }
 
-        public static IField CreateEmptyField()
+        public static IGrid CreateEmptyGrid()
         {
-            return new Field();
+            return new Grid();
         }
 
-        private Field()
+        private Grid()
         {
             for (int x = 0; x < Extension; x++)
             {
                 for (int y = 0; y < Extension; y++)
                 {
-                    _field[x, y] = Factory.Instance.CreateEmptyCell();
+                    _grid[x, y] = Factory.Instance.CreateEmptyCell();
                 }
             }
         }
@@ -109,6 +109,6 @@ namespace Mechanics.Field
         internal const int Extension = ExtensionNeighborhood * ExtensionNeighborhood;
         internal const int ExtensionNeighborhood = 3;
 
-        private readonly ICell[,] _field = new ICell[Extension, Extension];
+        private readonly ICell[,] _grid = new ICell[Extension, Extension];
     }
 }

@@ -1,6 +1,6 @@
 ﻿using Mechanics.Cell;
-using Mechanics.Field;
-using Mechanics.FieldManager;
+using Mechanics.Grid;
+using Mechanics.GridManager;
 
 namespace Mechanics
 {
@@ -18,19 +18,19 @@ namespace Mechanics
             return Cell.Cell.CreateEmptyCell();
         }
 
-        public IField CreateEmptyField()
+        public IGrid CreateEmptyGrid()
         {
-            return Field.Field.CreateEmptyField();
+            return Grid.Grid.CreateEmptyGrid();
         }
 
-        public IFieldManager CreateEmptyFieldManager()
+        public IGridManager CreateNewGridManager()
         {
-            return FieldManager.FieldManager.CreateEmptyFieldManager();
+            return GridManager.GridManager.CreateNewGridManager();
         }
 
-        public IFieldManager LoadFieldManager(string fileName)
+        public IGridManager LoadGridManager(string fileName)
         {
-            return FieldManager.FieldManager.Load(fileName);
+            return GridManager.GridManager.Load(fileName);
         }
     }
 }

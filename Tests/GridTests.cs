@@ -7,13 +7,13 @@ using Mechanics;
 namespace Tests
 {
     [TestFixture]
-    public class FieldTests
+    public class GridTests
     {
         [Test]
         public void CheckForCells()
         {
             var emptyCell = Factory.Instance.CreateEmptyCell();
-            var field = Factory.Instance.CreateEmptyField();
+            var grid = Factory.Instance.CreateEmptyGrid();
 
             for (int x = -_width; x < 2 * _width; x++)
             {
@@ -22,11 +22,11 @@ namespace Tests
                     var p = new Point(x, y);
                     if (x >= 0 && x < _width && y >= 0 && y < _width)
                     {
-                        Assert.That(emptyCell.Equals(field[p]));
+                        Assert.That(emptyCell.Equals(grid[p]));
                     }
                     else
                     {
-                        Assert.Throws<IndexOutOfRangeException>(() => emptyCell.Equals(field[p]));
+                        Assert.Throws<IndexOutOfRangeException>(() => emptyCell.Equals(grid[p]));
                     }
                 }
             }
@@ -35,15 +35,15 @@ namespace Tests
         [Test]
         public void Identity()
         {
-            var fieldA = Factory.Instance.CreateEmptyField();
-            var fieldB = Factory.Instance.CreateEmptyField();
+            var gridA = Factory.Instance.CreateEmptyGrid();
+            var gridB = Factory.Instance.CreateEmptyGrid();
 
-            Assume.That(fieldA.Equals(fieldB));
+            Assume.That(gridA.Equals(gridB));
 
-            var fieldC = fieldB.SetCell(new Point(5, 6), NumericValue.Eight);
-            Assume.That(!fieldA.Equals(fieldC));
+            var gridC = gridB.SetCell(new Point(5, 6), NumericValue.Eight);
+            Assume.That(!gridA.Equals(gridC));
 
-            Assume.That(fieldA.Equals(fieldB));
+            Assume.That(gridA.Equals(gridB));
         }
 
         private const int _width = 9;

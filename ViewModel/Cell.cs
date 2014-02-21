@@ -33,7 +33,7 @@ namespace ViewModel
             get { return _cell.IsDefined; }
         }
 
-        public Cell(ICell cell, Field parent, Point p)
+        public Cell(ICell cell, Grid parent, Point p)
         {
             _cell = cell;
             var values = new List<int>();

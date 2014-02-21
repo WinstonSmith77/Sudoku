@@ -45,10 +45,10 @@
     <Compile Include="Exceptions\NoMoreSolutionException.cs" />
     <Compile Include="Exceptions\ValueIsNotDefinedException.cs" />
     <Compile Include="Factory.cs" />
-    <Compile Include="FieldManager\FieldManager.cs" />
-    <Compile Include="Field\Field.cs" />
-    <Compile Include="Field\IField.cs" />
-    <Compile Include="FieldManager\IFieldManager.cs" />
+    <Compile Include="GridManager\GridManager.cs" />
+    <Compile Include="Grid\Grid.cs" />
+    <Compile Include="Grid\IGrid.cs" />
+    <Compile Include="GridManager\IGridManager.cs" />
     <Compile Include="Geometry\Range\Neighbor.cs" />
     <Compile Include="Geometry\Range\Horizontal.cs" />
     <Compile Include="Geometry\Range\IRange.cs" />

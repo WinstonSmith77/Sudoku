@@ -6,15 +6,16 @@ using Mechanics;
 using Mechanics.Cell;
 using Mechanics.Exceptions;
 using Mechanics.Geometry;
+using Mechanics.GridManager;
 using ViewModel.Annotations;
 
 namespace ViewModel
 {
-    public sealed class FieldManager : INotifyPropertyChanged
+    public sealed class GridManager : INotifyPropertyChanged
     {
-        private Mechanics.FieldManager.IFieldManager _fieldManager;
+        private IGridManager _gridManager;
 
-        public FieldManager()
+        public GridManager()
         {
             Reset = new RelayCommand(ResetInner, CanResetOrSave);
             ResetInner();
@@ -32,14 +33,14 @@ namespace ViewModel
             var dlg = new OpenFileDialog { DefaultExt = "sudoku", Filter = "Sodoku | *.sudoku", CheckFileExists = true };
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                _fieldManager = Factory.Instance.LoadFieldManager(dlg.FileName);
-                CurrentField = new Field(_fieldManager.CurrentField, this);
+                _gridManager = Factory.Instance.LoadGridManager(dlg.FileName);
+                CurrentGrid = new Grid(_gridManager.CurrentGrid, this);
             }
         }
 
         private bool CanResetOrSave()
         {
-            return _fieldManager.CanReset();
+            return _gridManager.CanReset();
         }
 
         private void SaveInner()
@@ -48,44 +49,44 @@ namespace ViewModel
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                _fieldManager.Save(dlg.FileName);
+                _gridManager.Save(dlg.FileName);
             }
         }
 
         private bool CanRedo()
         {
-            return _fieldManager.CanRedo();
+            return _gridManager.CanRedo();
         }
 
         private void RedoInner()
         {
-            CurrentField.SetField(_fieldManager.Redo());
+            CurrentGrid.SetGrid(_gridManager.Redo());
         }
 
         private void UndoInner()
         {
-            CurrentField.SetField(_fieldManager.Undo());
+            CurrentGrid.SetGrid(_gridManager.Undo());
         }
 
         private bool CanUndo()
         {
-            return _fieldManager.CanUndo();
+            return _gridManager.CanUndo();
         }
 
         private void ResetInner()
         {
-            _fieldManager = Factory.Instance.CreateEmptyFieldManager();
-            CurrentField = new Field(_fieldManager.CurrentField, this);
+            _gridManager = Factory.Instance.CreateNewGridManager();
+            CurrentGrid = new Grid(_gridManager.CurrentGrid, this);
         }
 
-        private Field _currentField;
-        public Field CurrentField
+        private Grid _currentGrid;
+        public Grid CurrentGrid
         {
-            get { return _currentField; }
+            get { return _currentGrid; }
             set
             {
-                if (Equals(value, _currentField)) return;
-                _currentField = value;
+                if (Equals(value, _currentGrid)) return;
+                _currentGrid = value;
                 OnPropertyChanged();
             }
         }
@@ -103,8 +104,8 @@ namespace ViewModel
         {
             try
             {
-                var newField = _fieldManager.SetCell(p, (NumericValue)value);
-                CurrentField.SetField(newField);
+                var newGrid = _gridManager.SetCell(p, (NumericValue)value);
+                CurrentGrid.SetGrid(newGrid);
             }
             catch (NoMoreSolutionException)
             {

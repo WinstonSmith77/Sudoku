@@ -1,17 +1,18 @@
 ﻿using System.Collections.ObjectModel;
 using System.ComponentModel;
 using Mechanics.Geometry;
+using Mechanics.Grid;
 
 namespace ViewModel
 {
-    public sealed class Field : INotifyPropertyChanged
+    public sealed class Grid : INotifyPropertyChanged
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        public Field(Mechanics.Field.IField field, FieldManager parent)
+        public Grid(IGrid grid, GridManager parent)
         {
             _parent = parent;
-            _field = field;
+            _grid = grid;
             Cells = new ObservableCollection<Cell>(new Cell[Cell.Width * Cell.Width]);
 
             for (int x = 0; x < Cell.Width; x++)
@@ -19,30 +20,30 @@ namespace ViewModel
                 for (int y = 0; y < Cell.Width; y++)
                 {
                     var p = new Point(x, y);
-                    Cells[p.Index] = new Cell(_field[p], this, p);
+                    Cells[p.Index] = new Cell(_grid[p], this, p);
                 }
             }
         }
 
-        public void SetField(Mechanics.Field.IField field)
+        public void SetGrid(IGrid grid)
         {
-            _field = field;
+            _grid = grid;
 
             for (int x = 0; x < Cell.Width; x++)
             {
                 for (int y = 0; y < Cell.Width; y++)
                 {
                     var p = new Point(x, y);
-                    if (!Cells[p.Index].InnerCell.Equals(_field[p]))
+                    if (!Cells[p.Index].InnerCell.Equals(_grid[p]))
                     {
-                        Cells[p.Index] = new Cell(_field[p], this, p);
+                        Cells[p.Index] = new Cell(_grid[p], this, p);
                     }
                 }
             }
         }
 
-        private readonly FieldManager _parent;
-        private Mechanics.Field.IField _field;
+        private readonly GridManager _parent;
+        private IGrid _grid;
 
         public ObservableCollection<Cell> Cells
         {

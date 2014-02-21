@@ -10,7 +10,7 @@ namespace Sudoku
         public MainWindow()
         {
             InitializeComponent();
-            DataContext = new FieldManager();
+            DataContext = new GridManager();
         }
     }
 }

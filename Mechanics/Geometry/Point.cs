@@ -23,7 +23,7 @@
         {
             get
             {
-                return X + Y * Field.Field.Extension;
+                return X + Y * Grid.Grid.Extension;
             }
         }
 

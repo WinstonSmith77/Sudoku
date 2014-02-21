@@ -14,9 +14,7 @@ namespace ViewModel
 {
     public sealed class Field : INotifyPropertyChanged
     {
-
         public event PropertyChangedEventHandler PropertyChanged;
-
 
         public Field(Mechanics.Field.IField field, FieldManager parent)
         {
@@ -66,8 +64,6 @@ namespace ViewModel
             PropertyChangedEventHandler handler = PropertyChanged;
             if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
         }
-
-
 
         internal void ValueChoosen(int value, Point p)
         {

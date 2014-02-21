@@ -23,13 +23,12 @@ namespace Tests
             return output;
         }
 
-        public static List<int> CreateRandomRangeFromZero(int length, int seed = _defaultSeed)
+        public static IEnumerable<int> CreateRandomRangeFromZero(int length, int seed = _defaultSeed)
         {
             var random = new Random(seed);
             var order = Enumerable.Range(0, length).ToList();
 
             var shuffledOrder = new List<int>();
-
 
             for (; order.Count != 0; )
             {

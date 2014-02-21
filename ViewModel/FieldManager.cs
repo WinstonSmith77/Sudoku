@@ -84,7 +84,6 @@ namespace ViewModel
             CurrentField = new Field(_fieldManager.CurrentField, this);
         }
 
-
         private Field _currentField;
         public Field CurrentField
         {
@@ -117,7 +116,6 @@ namespace ViewModel
             {
                 MessageBox.Show("Choice is not possible!", "Error");
             }
-
         }
 
         public ICommand Reset { get; private set; }

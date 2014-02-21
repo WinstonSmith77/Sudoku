@@ -33,7 +33,6 @@ namespace ViewModel
             get { return _cell.IsDefined; }
         }
 
-
         public Cell(ICell cell, Field parent, Point p)
         {
             _cell = cell;
@@ -55,7 +54,6 @@ namespace ViewModel
                         values.Add((int) value);
                     }
                 }
-
 
                 Values =
                     Enumerable.Range(1, Width)
@@ -83,6 +81,9 @@ namespace ViewModel
             get { return _cell; }
         }
 
-        public static Color[] MyColors = new[] { Colors.Red, Colors.Green, Colors.Peru, Colors.Blue, Colors.Black, Colors.DarkRed, Colors.Orange, Colors.Purple, Colors.DarkGoldenrod };
+        private static Color[] MyColors = new[] { 
+            Colors.Red, Colors.Green, Colors.Peru, 
+            Colors.Blue, Colors.Black, Colors.DarkRed, 
+            Colors.Orange, Colors.Purple, Colors.DarkGoldenrod };
     }
 }

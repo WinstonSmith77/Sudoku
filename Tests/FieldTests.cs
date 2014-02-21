@@ -10,7 +10,6 @@ namespace Tests
     [TestFixture]
     public class FieldTests
     {
-
         [Test]
         public void CheckForCells()
         {

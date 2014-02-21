@@ -1,14 +1,9 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
 
 namespace Sudoku
 {
-
     public class RelayCommand : ICommand
     {
         private readonly Action _execute;
@@ -49,14 +44,6 @@ namespace Sudoku
             {
                 CanExecuteChangedInner -= value;
                 CommandManager.RequerySuggested -= value;
-            }
-        }
-
-        public void FireCanExecuteChanged()
-        {
-            if (CanExecuteChangedInner != null)
-            {
-                CanExecuteChangedInner(this, EventArgs.Empty);
             }
         }
 

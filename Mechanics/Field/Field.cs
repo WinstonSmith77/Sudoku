@@ -1,10 +1,5 @@
-﻿using System.Collections;
-using Mechanics.Cell;
+﻿using Mechanics.Cell;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Mechanics.Geometry;
 
 namespace Mechanics.Field
@@ -33,7 +28,6 @@ namespace Mechanics.Field
             }
         }
 
-
         public override bool Equals(object obj)
         {
             var other = obj as Field;
@@ -54,7 +48,6 @@ namespace Mechanics.Field
 
             return hashCode;
         }
-
 
         private static bool SameContent(Field field, Field other)
         {
@@ -100,11 +93,6 @@ namespace Mechanics.Field
         public static IField CreateEmptyField()
         {
             return new Field();
-        }
-
-        private Field(ICell[,] field)
-        {
-            _field = field;
         }
 
         private Field()

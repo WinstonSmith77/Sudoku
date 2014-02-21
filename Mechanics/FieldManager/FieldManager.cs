@@ -2,7 +2,6 @@
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
-using System.Runtime.Serialization;
 using System.Runtime.Serialization.Formatters.Binary;
 using Mechanics.Cell;
 using Mechanics.Exceptions;
@@ -18,7 +17,7 @@ namespace Mechanics.FieldManager
     {
         internal static FieldManager Load(string fileName)
         {
-            IFormatter formatter = new BinaryFormatter();
+            var formatter = new BinaryFormatter();
             using (var stream = File.OpenRead(fileName))
             {
                 using (var compress = new DeflateStream(stream, CompressionMode.Decompress))
@@ -30,7 +29,7 @@ namespace Mechanics.FieldManager
 
         public void Save(string fileName)
         {
-            IFormatter formatter = new BinaryFormatter();
+            var formatter = new BinaryFormatter();
             using (var stream = File.Create(fileName))
             {
                 using (var compress = new DeflateStream(stream, CompressionLevel.Optimal))

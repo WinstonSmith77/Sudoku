@@ -1,10 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
+﻿using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Windows.Input;
 using Mechanics;
@@ -18,7 +13,6 @@ namespace ViewModel
     public sealed class FieldManager : INotifyPropertyChanged
     {
         private Mechanics.FieldManager.IFieldManager _fieldManager;
-
 
         public FieldManager()
         {
@@ -35,7 +29,7 @@ namespace ViewModel
 
         private void InnerLoad()
         {
-            var dlg = new OpenFileDialog() { DefaultExt = "sudoku", Filter = "Sodoku | *.sudoku", CheckFileExists = true };
+            var dlg = new OpenFileDialog { DefaultExt = "sudoku", Filter = "Sodoku | *.sudoku", CheckFileExists = true };
             if (dlg.ShowDialog() == DialogResult.OK)
             {
                 _fieldManager = Factory.Instance.LoadFieldManager(dlg.FileName);

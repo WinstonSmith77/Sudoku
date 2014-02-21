@@ -1,6 +1,5 @@
 ﻿using System;
 using Mechanics.Cell;
-using Mechanics.Field;
 using Mechanics.Geometry;
 using NUnit.Framework;
 using Mechanics;

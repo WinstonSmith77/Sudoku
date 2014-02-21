@@ -4,7 +4,6 @@ using System.Windows.Input;
 
 namespace ViewModel
 {
-
     public class RelayCommand : ICommand
     {
         private readonly Action _execute;

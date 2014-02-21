@@ -2,8 +2,6 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Mechanics.Exceptions;
 
 namespace Mechanics.Cell
@@ -15,9 +13,7 @@ namespace Mechanics.Cell
         {
             return (_possibleValues.Count);
         }
-
       
-
         public override bool Equals(object obj)
         {
             var other = obj as Cell;
@@ -31,7 +27,6 @@ namespace Mechanics.Cell
             _allNumericValues = new ReadOnlyCollection<NumericValue>(Enum.GetValues(typeof(NumericValue)).Cast<NumericValue>().ToList());
             _emptyCell = new Cell(_allNumericValues);
         }
-
 
         private readonly static Cell _emptyCell;
 
@@ -81,7 +76,6 @@ namespace Mechanics.Cell
 
                 return _possibleValues.First();
             }
-
         }
 
         private static bool SameContent(Cell a, Cell b)

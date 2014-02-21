@@ -60,7 +60,7 @@ namespace Sudoku.Converts
                 return null;
             }
 
-            Visibility valueAsVisibility = (Visibility)value;
+            var valueAsVisibility = (Visibility)value;
 
             bool result = valueAsVisibility == Visibility.Visible;
 

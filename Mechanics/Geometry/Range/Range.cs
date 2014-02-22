@@ -5,7 +5,7 @@ namespace Mechanics.Geometry.Range
 {
     public class Range : RangeBase
     {
-        private readonly IEnumerable<Point> _allPoints;
+        private readonly List<Point> _allPoints = new List<Point>();
 
         protected override IEnumerable<Point> GetAllPoints()
         {
@@ -14,15 +14,13 @@ namespace Mechanics.Geometry.Range
 
         public Range(Point p)
         {
-            var allPoints = new List<Point>();
+            _allPoints.AddRange(new Vertical(p.X));
+            _allPoints.AddRange(new Horizontal(p.Y));
+            _allPoints.AddRange(new Neighbor(p));
 
-            allPoints.AddRange(new Vertical(p.X));
-            allPoints.AddRange(new Horizontal(p.Y));
-            allPoints.AddRange(new Neighbor(p));
+            _allPoints.RemoveAll(point => point.Equals(p));
 
-            allPoints.Remove(p);
-
-            _allPoints = allPoints.Distinct().ToList();
+            _allPoints = _allPoints.Distinct().ToList();
         }
     }
 }

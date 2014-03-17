@@ -1,4 +1,5 @@
-﻿using Mechanics.Cell;
+﻿using System.IO;
+using Mechanics.Cell;
 using Mechanics.Geometry;
 using Mechanics.Grid;
 
@@ -6,7 +7,7 @@ namespace Mechanics.GridManager
 {
     public interface IGridManager
     {
-        void Save(string fileName);
+        void Save(Stream fileName);
         IGrid SetCell(Point p, NumericValue value);
         IGrid CurrentGrid { get; }
 

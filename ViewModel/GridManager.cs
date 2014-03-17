@@ -1,4 +1,5 @@
 ﻿using System.ComponentModel;
+using System.IO;
 using System.Runtime.CompilerServices;
 using System.Windows.Forms;
 using System.Windows.Input;
@@ -33,8 +34,11 @@ namespace ViewModel
             var dlg = new OpenFileDialog { DefaultExt = "sudoku", Filter = "Sodoku | *.sudoku", CheckFileExists = true };
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                _gridManager = Factory.Instance.LoadGridManager(dlg.FileName);
-                CurrentGrid = new Grid(_gridManager.CurrentGrid, this);
+                using (var file = new FileStream(dlg.FileName, FileMode.Open))
+                {
+                    _gridManager = Factory.Instance.LoadGridManager(file);
+                    CurrentGrid = new Grid(_gridManager.CurrentGrid, this);
+                }
             }
         }
 
@@ -49,7 +53,10 @@ namespace ViewModel
 
             if (dlg.ShowDialog() == DialogResult.OK)
             {
-                _gridManager.Save(dlg.FileName);
+                using (var file = new FileStream(dlg.FileName, FileMode.CreateNew))
+                {
+                    _gridManager.Save(file);
+                }
             }
         }
 

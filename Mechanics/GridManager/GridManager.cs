@@ -15,27 +15,24 @@ namespace Mechanics.GridManager
     [Serializable]
     public class GridManager : IGridManager
     {
-        internal static GridManager Load(string fileName)
+        internal static GridManager Load(Stream stream)
         {
             var formatter = new BinaryFormatter();
-            using (var stream = File.OpenRead(fileName))
+
+            using (var compress = new DeflateStream(stream, CompressionMode.Decompress))
             {
-                using (var compress = new DeflateStream(stream, CompressionMode.Decompress))
-                {
-                    return (GridManager)formatter.Deserialize(compress);
-                }
+                return (GridManager)formatter.Deserialize(compress);
             }
+
         }
 
-        public void Save(string fileName)
+        public void Save(Stream stream)
         {
             var formatter = new BinaryFormatter();
-            using (var stream = File.Create(fileName))
+
+            using (var compress = new DeflateStream(stream, CompressionLevel.Optimal))
             {
-                using (var compress = new DeflateStream(stream, CompressionLevel.Optimal))
-                {
-                    formatter.Serialize(compress, this);
-                }
+                formatter.Serialize(compress, this);
             }
         }
 

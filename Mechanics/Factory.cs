@@ -1,4 +1,5 @@
-﻿using Mechanics.Cell;
+﻿using System.IO;
+using Mechanics.Cell;
 using Mechanics.Grid;
 using Mechanics.GridManager;
 
@@ -28,9 +29,9 @@ namespace Mechanics
             return GridManager.GridManager.CreateNewGridManager();
         }
 
-        public IGridManager LoadGridManager(string fileName)
+        public IGridManager LoadGridManager(Stream stream)
         {
-            return GridManager.GridManager.Load(fileName);
+            return GridManager.GridManager.Load(stream);
         }
     }
 }

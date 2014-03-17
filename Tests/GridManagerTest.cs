@@ -7,6 +7,7 @@ using System.Threading.Tasks;
 using Mechanics;
 using Mechanics.Cell;
 using Mechanics.Geometry;
+using Mechanics.GridManager;
 using NUnit.Framework;
 
 namespace Tests
@@ -17,27 +18,42 @@ namespace Tests
         [Test]
         public void LoadAndSave()
         {
-            string tempFile = Path.GetTempFileName();
-            try
+            byte[] array;
+            IGridManager fmA;
+            using (var stream = new MemoryStream())
             {
-                var fmA = Factory.Instance.CreateNewGridManager();
-                fmA.Save(tempFile);
-
-                var fmB = Factory.Instance.LoadGridManager(tempFile);
-
-                Assert.That(fmA.Equals(fmB));
-
-                var fmC = Factory.Instance.CreateNewGridManager();
-                fmC.SetCell(new Point(3, 4), NumericValue.Seven);
-                fmC.Save(tempFile);
-
-                var fmD = Factory.Instance.LoadGridManager(tempFile);
-
-                Assert.That(fmC.Equals(fmD));
+                fmA = Factory.Instance.CreateNewGridManager();
+                fmA.Save(stream);
+                stream.ToArray();
+                array = stream.ToArray();
             }
-            finally
+
+            LoadAnCompare(array, fmA);
+        }
+
+        [Test]
+        public void LoadAndSave2()
+        {
+            byte[] array;
+            IGridManager fmA;
+            using (var stream = new MemoryStream())
             {
-                File.Delete(tempFile);
+                fmA = Factory.Instance.CreateNewGridManager();
+                fmA.SetCell(new Point(3, 4), NumericValue.Seven);
+                fmA.Save(stream);
+                stream.ToArray();
+                array = stream.ToArray();
+            }
+
+            LoadAnCompare(array, fmA);
+        }
+
+        private static void LoadAnCompare(byte[] array, IGridManager fmA)
+        {
+            using (var stream = new MemoryStream(array))
+            {
+                var fmB = Factory.Instance.LoadGridManager(stream);
+                Assert.That(fmA.Equals(fmB));
             }
         }
     }

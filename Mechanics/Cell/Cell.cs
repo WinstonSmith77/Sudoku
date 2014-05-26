@@ -50,7 +50,7 @@ namespace Mechanics.Cell
             }
         }
 
-        public bool CouldBe(NumericValue value)
+        public bool MayHaveValue(NumericValue value)
         {
             return _possibleValues.Contains(value);
         }

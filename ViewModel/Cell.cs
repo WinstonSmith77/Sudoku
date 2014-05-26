@@ -49,7 +49,7 @@ namespace ViewModel
 
                 foreach (var value in _allNumericValues)
                 {
-                    if (cell.CouldBe(value))
+                    if (cell.MayHaveValue(value))
                     {
                         values.Add((int) value);
                     }

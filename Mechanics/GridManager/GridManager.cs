@@ -78,7 +78,7 @@ namespace Mechanics.GridManager
         private void CheckWhetherThereIsASolution(IGrid grid, IEnumerable<Point> range)
         {
             var points = range.ToList();
-            if (_allNumericValues.Exists(value => !points.Exists(p => grid[p].CouldBe(value))))
+            if (_allNumericValues.Exists(value => !points.Exists(p => grid[p].MayHaveValue(value))))
             {
                 throw new NoMoreSolutionException();
             }

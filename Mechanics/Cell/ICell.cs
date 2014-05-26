@@ -7,7 +7,7 @@
             get;
         }
 
-        bool CouldBe(NumericValue value);
+        bool MayHaveValue(NumericValue value);
 
         ICell ExcludeValue(NumericValue value);
 

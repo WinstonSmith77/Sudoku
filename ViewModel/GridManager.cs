@@ -26,10 +26,10 @@ namespace ViewModel
             Save = new RelayCommand(SaveInner, CanResetOrSave);
 
             Save = new RelayCommand(SaveInner, CanResetOrSave);
-            Load = new RelayCommand(InnerLoad);
+            Load = new RelayCommand(this.LoadInner);
         }
 
-        private void InnerLoad()
+        private void LoadInner()
         {
             var dlg = new OpenFileDialog { DefaultExt = "sudoku", Filter = "Sodoku | *.sudoku", CheckFileExists = true };
             if (dlg.ShowDialog() == DialogResult.OK)

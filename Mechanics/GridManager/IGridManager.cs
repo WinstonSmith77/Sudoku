@@ -9,7 +9,10 @@ namespace Mechanics.GridManager
     {
         void Save(Stream fileName);
         IGrid SetCell(Point p, NumericValue value);
-        IGrid CurrentGrid { get; }
+        IGrid CurrentGrid
+        {
+            get;
+        }
 
         bool CanUndo();
         IGrid Undo();

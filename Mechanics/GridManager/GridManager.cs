@@ -23,7 +23,6 @@ namespace Mechanics.GridManager
             {
                 return (GridManager)formatter.Deserialize(compress);
             }
-
         }
 
         public void Save(Stream stream)

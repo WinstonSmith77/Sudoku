@@ -30,7 +30,10 @@ namespace ViewModel
 
         public bool IsDefined
         {
-            get { return _cell.IsDefined; }
+            get
+            {
+                return _cell.IsDefined;
+            }
         }
 
         public Cell(ICell cell, Grid parent, Point p)
@@ -78,7 +81,10 @@ namespace ViewModel
 
         public ICell InnerCell
         {
-            get { return _cell; }
+            get
+            {
+                return _cell;
+            }
         }
 
         private static Color[] MyColors = new[] { 

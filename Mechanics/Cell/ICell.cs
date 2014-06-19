@@ -11,6 +11,9 @@
 
         ICell ExcludeValue(NumericValue value);
 
-        NumericValue Value { get; }
+        NumericValue Value
+        {
+            get;
+        }
     }
 }

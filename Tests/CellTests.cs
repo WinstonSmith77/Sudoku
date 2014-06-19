@@ -30,7 +30,6 @@ namespace Tests
             {
                 Assume.That(cell.MayHaveValue(numericValue));
             }
-
         }
 
         [Test]
@@ -114,7 +113,6 @@ namespace Tests
             {
                 cellA = cellA.ExcludeValue(remove);
             }
-
 
             foreach (var remove in shuffledB)
             {

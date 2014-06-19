@@ -19,10 +19,6 @@ namespace Tests
                 new object[]  {NumericValue.Nine,  9},
             };
 
-
-
-
-
         [Test, TestCaseSource("_testCases")]
         public void CheckNumericValueTiInt(NumericValue value, int valueAsInt)
         {

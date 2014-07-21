@@ -20,7 +20,7 @@ namespace Tests
             };
 
         [Test, TestCaseSource("_testCases")]
-        public void CheckNumericValueTiInt(NumericValue value, int valueAsInt)
+        public void ConvertNumericValueToInt(NumericValue value, int valueAsInt)
         {
             Assert.AreEqual((int)value, valueAsInt);
         }

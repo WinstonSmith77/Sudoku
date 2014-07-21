@@ -28,7 +28,7 @@ namespace Tests
                 array = stream.ToArray();
             }
 
-            LoadAnCompare(array, fmA);
+            LoadAndCompare(array, fmA);
         }
 
         [Test]
@@ -45,10 +45,10 @@ namespace Tests
                 array = stream.ToArray();
             }
 
-            LoadAnCompare(array, fmA);
+            LoadAndCompare(array, fmA);
         }
 
-        private static void LoadAnCompare(byte[] array, IGridManager fmA)
+        private static void LoadAndCompare(byte[] array, IGridManager fmA)
         {
             using (var stream = new MemoryStream(array))
             {

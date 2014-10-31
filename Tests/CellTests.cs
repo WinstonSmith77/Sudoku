@@ -70,7 +70,7 @@ namespace Tests
             var cell = Factory.Instance.CreateEmptyCell();
             Assert.Throws<ValueIsNotDefinedException>(() =>
                 {
-                    var a = cell.Value;
+                    var dummy = cell.Value;
                 });
         }
 

@@ -1,17 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
+using System.Globalization;
 using System.Linq;
-using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Input;
 using System.Windows.Media;
 using Mechanics.Cell;
 using Mechanics.Geometry;
 using ViewModel.Annotations;
-using Mechanics;
 
 namespace ViewModel
 {
@@ -28,6 +23,7 @@ namespace ViewModel
 
         private readonly ICell _cell;
 
+        [UsedImplicitly]
         public bool IsDefined
         {
             get
@@ -44,12 +40,11 @@ namespace ViewModel
             if (IsDefined)
             {
                 var value = (int) (cell.Value);
-                Result = value.ToString();
-                ResultColor = MyColors[value - 1];
+                Result = value.ToString(CultureInfo.InvariantCulture);
+                ResultColor = _myColors[value - 1];
             }
             else
             {
-
                 foreach (var value in _allNumericValues)
                 {
                     if (cell.MayHaveValue(value))
@@ -64,19 +59,23 @@ namespace ViewModel
                               .Select(
                                   value =>
                                   Tuple.Create(value, new RelayCommand(() => parent.ValueChoosen(value, p)),
-                                               values.Contains(value), MyColors[value - 1]));
+                                               values.Contains(value), _myColors[value - 1]));
                 Result = "?";
             }
            
         }
 
+        [UsedImplicitly]
         public IEnumerable<Tuple<int, RelayCommand, bool, Color>> Values
         {
             get;
             set;
         }
 
+        [UsedImplicitly]
         public string Result { get; set; }
+
+        [UsedImplicitly]
         public Color ResultColor { get; set; }
 
         public ICell InnerCell
@@ -87,7 +86,7 @@ namespace ViewModel
             }
         }
 
-        private static Color[] MyColors = new[] { 
+        private static readonly Color[] _myColors = new[] { 
             Colors.Red, Colors.Green, Colors.Peru, 
             Colors.Blue, Colors.Black, Colors.DarkRed, 
             Colors.Orange, Colors.Purple, Colors.DarkGoldenrod };

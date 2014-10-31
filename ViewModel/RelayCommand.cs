@@ -31,7 +31,7 @@ namespace ViewModel
             return _canExecute();
         }
 
-        public event EventHandler CanExecuteChangedInner;
+        private event EventHandler CanExecuteChangedInner;
 
         public event EventHandler CanExecuteChanged
         {

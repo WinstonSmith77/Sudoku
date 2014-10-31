@@ -26,7 +26,7 @@ namespace ViewModel
             Save = new RelayCommand(SaveInner, CanResetOrSave);
 
             Save = new RelayCommand(SaveInner, CanResetOrSave);
-            Load = new RelayCommand(this.LoadInner);
+            Load = new RelayCommand(LoadInner);
         }
 
         private void LoadInner()
@@ -87,6 +87,8 @@ namespace ViewModel
         }
 
         private Grid _currentGrid;
+
+        [UsedImplicitly]
         public Grid CurrentGrid
         {
             get { return _currentGrid; }
@@ -119,12 +121,19 @@ namespace ViewModel
                 MessageBox.Show("Choice is not possible!", "Error");
             }
         }
-
+        [UsedImplicitly]
         public ICommand Reset { get; private set; }
+
+        [UsedImplicitly]
         public ICommand Undo { get; private set; }
+
+        [UsedImplicitly]
         public ICommand Redo { get; private set; }
 
+        [UsedImplicitly]
         public ICommand Save { get; private set; }
+
+        [UsedImplicitly]
         public ICommand Load { get; private set; }
     }
 }

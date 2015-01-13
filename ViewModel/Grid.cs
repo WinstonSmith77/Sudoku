@@ -2,6 +2,7 @@
 using System.ComponentModel;
 using Mechanics.Geometry;
 using Mechanics.Grid;
+using ViewModel.Annotations;
 
 namespace ViewModel
 {
@@ -45,6 +46,7 @@ namespace ViewModel
         private readonly GridManager _parent;
         private IGrid _grid;
 
+        [UsedImplicitly]
         public ObservableCollection<Cell> Cells
         {
             get;

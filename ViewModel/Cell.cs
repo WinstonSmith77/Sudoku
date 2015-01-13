@@ -41,7 +41,7 @@ namespace ViewModel
             {
                 var value = (int) (cell.Value);
                 Result = value.ToString(CultureInfo.InvariantCulture);
-                ResultColor = _myColors[value - 1];
+                ResultColor = _cellColors[value - 1];
             }
             else
             {
@@ -59,7 +59,7 @@ namespace ViewModel
                               .Select(
                                   value =>
                                   Tuple.Create(value, new RelayCommand(() => parent.ValueChoosen(value, p)),
-                                               values.Contains(value), _myColors[value - 1]));
+                                               values.Contains(value), _cellColors[value - 1]));
                 Result = "?";
             }
            
@@ -73,10 +73,10 @@ namespace ViewModel
         }
 
         [UsedImplicitly]
-        public string Result { get; set; }
+        public string Result { get; private set; }
 
         [UsedImplicitly]
-        public Color ResultColor { get; set; }
+        public Color ResultColor { get; private set; }
 
         public ICell InnerCell
         {
@@ -86,7 +86,7 @@ namespace ViewModel
             }
         }
 
-        private static readonly Color[] _myColors = new[] { 
+        private static readonly Color[] _cellColors = { 
             Colors.Red, Colors.Green, Colors.Peru, 
             Colors.Blue, Colors.Black, Colors.DarkRed, 
             Colors.Orange, Colors.Purple, Colors.DarkGoldenrod };

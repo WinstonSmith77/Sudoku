@@ -6,8 +6,7 @@ namespace Tests
     [TestFixture]
     public class Values
     {
-        private readonly object[] _testCases = new object[]
-            {
+        private readonly object[] _testCases = {
                 new object[]  {NumericValue.One,  1},
                 new object[]  {NumericValue.Two,  2},
                 new object[]  {NumericValue.Three,  3},

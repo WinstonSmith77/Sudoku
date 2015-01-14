@@ -2,7 +2,7 @@
 using System.ComponentModel;
 using Mechanics.Geometry;
 using Mechanics.Grid;
-using ViewModel.Annotations;
+using ViewModel.Properties;
 
 namespace ViewModel
 {

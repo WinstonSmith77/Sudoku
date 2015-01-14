@@ -8,7 +8,7 @@ using Mechanics.Cell;
 using Mechanics.Exceptions;
 using Mechanics.Geometry;
 using Mechanics.GridManager;
-using ViewModel.Annotations;
+using ViewModel.Properties;
 
 namespace ViewModel
 {

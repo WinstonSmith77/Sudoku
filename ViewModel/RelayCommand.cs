@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Diagnostics;
 using System.Windows.Input;
+using ViewModel.Properties;
 
 namespace ViewModel
 {
@@ -31,6 +32,7 @@ namespace ViewModel
             return _canExecute();
         }
 
+        [UsedImplicitly]
         private event EventHandler CanExecuteChangedInner;
 
         public event EventHandler CanExecuteChanged

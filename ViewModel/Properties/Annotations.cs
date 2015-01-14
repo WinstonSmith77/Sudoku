@@ -16,7 +16,7 @@
 
 using System;
 
-namespace ViewModel.Annotations
+namespace ViewModel.Properties
 {
   /// <summary>
   /// Indicates that marked element should be localized or not.

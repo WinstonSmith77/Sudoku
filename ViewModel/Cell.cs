@@ -6,7 +6,7 @@ using System.Linq;
 using System.Windows.Media;
 using Mechanics.Cell;
 using Mechanics.Geometry;
-using ViewModel.Annotations;
+using ViewModel.Properties;
 
 namespace ViewModel
 {

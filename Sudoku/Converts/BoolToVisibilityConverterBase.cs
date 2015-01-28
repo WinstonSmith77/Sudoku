@@ -21,6 +21,7 @@ namespace Sudoku.Converts
 
             var valueAsBool = ValueAsBool(value, GetBoolValue);
 
+
             if (CheckForInvert(parameter))
             {
                 valueAsBool = !valueAsBool;
